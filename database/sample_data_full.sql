@@ -19,12 +19,15 @@ INSERT INTO Menu (MenuID, CategoryID, Name, Price, Status, MenuDes, Picture) VAL
 
 -- Employee
 INSERT INTO Employee (EmployeeID, FName, LName, Password, Role, StartDate, Phone, Email) VALUES
-(100001, 'พีรพล', 'สุขุมาลพันธ์', 'pass1234', 'cashier', '2024-01-01', '0951111111', 'pee@example.com'),
+(100001, 'พีรพล', 'สุขุมาลพันธ์', 'pass1234', 'admin', '2024-01-01', '0951111111', 'pee@example.com'),
 (100002, 'รัตนากร', 'วังคีรี', 'pass1234', 'manager', '2024-02-01', '0952222222', 'rat@example.com'),
-(100003, 'ศิวกิจ ', 'ภูสุนาทัน', 'pass1234', 'chef', '2024-03-01', '0953333333', 'siw@example.com'),
-(100004, 'อริยา ', 'ตั้งโรจนกุล', 'pass1234', 'sevice', '2023-12-01', '0954444444', 'ari@example.com'),
-(100005, 'พิทวัส ', 'พิรักษา', 'pass1234', 'chef', '2024-01-15', '0955555555', 'pit@example.com'),
-(100006, 'ปวีร์  ', 'สีดามาตร', 'pass1234', 'chef', '2024-01-15', '0966666666', 'paw@example.com');
+(100003, 'ศิวกิจ ', 'ภูสุนาทัน', 'pass1234', 'staff', '2024-03-01', '0953333333', 'siw@example.com'),
+(100004, 'อริยา ', 'ตั้งโรจนกุล', 'pass1234', 'admin', '2023-12-01', '0954444444', 'ari@example.com'),
+(100005, 'พิทวัส ', 'พิรักษา', 'pass1234', 'staff', '2024-01-15', '0955555555', 'pit@example.com'),
+(100006, 'ปวีร์  ', 'สีดามาตร', 'pass1234', 'staff', '2024-01-15', '0966666666', 'paw@example.com'),
+(0001, 'สมชาย ', 'ใจงาม', '1234', 'admin', '2024-01-15', '0977777777', 'som@example.com'),
+(0002, 'สมศรี ', 'ใจดี', '1234', 'manager', '2024-01-15', '0988888888', 'soms@example.com'),
+(0003, 'สมปอง ', 'ใจเย็น', '1234', 'staff', '2024-01-15', '0999999999', 'somp@example.com');
 
 -- Orders
 INSERT INTO Orders (OrderID, EmployeeID, TableNo, OrderTime, Status) VALUES
