@@ -1,13 +1,13 @@
 body {
     font-family: sans-serif;
     background: url('../img/background.png');
-    background-size: 55%;
+    background-size: cover;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 .container {
-    background: url('../img/secoundbg.png');
+    background: url('../img/picture/SubBackground2.png');
     background-size: 80%;
     margin: 0 auto;
     padding: 20px;
