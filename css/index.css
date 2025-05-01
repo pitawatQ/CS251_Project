@@ -14,7 +14,7 @@ body {
     width: 70%;
     height: 70%;
     border-radius: 40px;
-    border: 10px solid #969696;
+    border: 8px solid #969696;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,7 +31,7 @@ body {
     margin: 0;
 }
 .menu-item {
-    border: 15px solid orange;
+    border: 10px solid orange;
     background-color: white;
     border-radius: 40px;
     width: 300px;
