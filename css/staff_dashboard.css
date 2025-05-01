@@ -63,9 +63,7 @@ body {
 .menu {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    grid-template-rows: repeat(2, auto); /* 2 rows */
     row-gap: 60px; /* Vertical spacing between rows */
-    column-gap: 40px; /* Horizontal spacing between columns */
     justify-content: center; /* Center the grid horizontally */
     align-content: center; /* Center the grid vertically */
     justify-items: center; /* Center items within their grid cells */
