@@ -1,0 +1,140 @@
+body {
+    font-family: sans-serif;
+    background: url('../img/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.home-button {
+    position: absolute;
+    top: 5%;
+    right: 25%; /* Adjust to position it left of the profile box */
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 3.5px solid #28c95b;
+    border-radius: 40px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.home-button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    object-fit: cover;
+}
+
+.home-button p {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.profile-box {
+    position: absolute;
+    top: 5%;
+    right: 14%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 3.5px solid #28c95b;
+    border-radius: 40px;
+    padding: 5px 12px;
+}
+
+.profile-box img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+    object-fit: cover;
+}
+
+.profile-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-name {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+    margin: -2px;
+}
+
+.profile-id {
+    font-size: 11px;
+    background-color: #28c95b;
+    border-radius: 20px;
+    padding: 3.5px 10px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+}
+
+.container{
+    background: url('../img/picture/SubBackground3.png');
+    background-size: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 40px;
+    border: 8px solid #969696;
+    position: absolute;
+    top: 53%;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    flex-direction: column;
+}
+
+.report-box {
+    background-color: white;
+    border: 4px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 85%; /* Adjust width */
+    margin-top: 30px; /* Center the box horizontally */
+    margin-bottom: 30px; /* Center the box horizontally */
+    height: 500px; /* Set height to accommodate the chart */
+}
+
+.report-box p {
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    font-size: 26px; /* Increase font size */
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+.exit-button {
+    position: absolute;
+    bottom: 7%;
+    right: 5%;
+    width: 65px;
+    height: 65px;
+    background-color: white;
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
+}
+.exit-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
