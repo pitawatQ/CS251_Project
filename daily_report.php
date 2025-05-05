@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Daily Report</title>
-    <link rel="stylesheet" type="text/css" href="css/dairy_report.css">
+    <link rel="stylesheet" type="text/css" href="css/daily_report.css">
 </head>
 <body>
 
