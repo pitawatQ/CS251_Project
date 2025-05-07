@@ -31,7 +31,7 @@
             <img src="img/picture/Tomato_Stew.png" alt="จัดการเมนูอาหาร">
             <p>จัดการเมนูอาหาร</p>
         </div>
-        <div class="menu-item" onclick="location.href='staff_management.php'">
+        <div class="menu-item" onclick="location.href='employees.php'">
             <img src="img/picture/3D_guy.png" alt="จัดการพนักงาน">
             <p>จัดการพนักงาน</p>
         </div>

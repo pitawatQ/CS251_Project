@@ -1,14 +1,44 @@
+<?php
+session_start();
+include 'backend/db_connect.php'; 
+include 'backend/auth.php'; 
+
+// ตรวจสอบว่าเข้าสู่ระบบหรือยัง
+if (!isset($_SESSION['EmployeeID'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$employeeID = $_SESSION['EmployeeID'];
+
+$stmt = $conn->prepare("SELECT FName, EmployeeID FROM Employee WHERE EmployeeID = ?");
+$stmt->bind_param("i", $employeeID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <title>จัดการพนักงาน</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/employees.css">
 </head>
 <body>
-    <h1>👤 จัดการพนักงาน</h1>
+<div class="profile-box">
+    <img src="img/picture/Profile_guy.png" alt="Profile Picture">
+    <div class="profile-info">
+    <p class="profile-name"><?php echo htmlspecialchars($profile['FName']); ?></p>
+    <p class="profile-id">ID: <?php echo htmlspecialchars($profile['EmployeeID']); ?></p>
+    </div>
+</div>
+<div class="container">
+    <div class="header-bar">
+        <h1>จัดการพนักงาน</h1>
+        <button class="btn-add">+ เพิ่มพนักงาน</button>
+    </div>
     <div class="toolbar">
-        <a href="#" class="btn">เพิ่มพนักงาน</a>
         <input type="text" placeholder="ค้นหาชื่อ/รหัสพนักงาน..." />
         <select>
             <option>ทั้งหมด</option>
@@ -20,72 +50,38 @@
             <option>ดูแลโต๊ะ</option>
         </select>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ชื่อ-นามสกุล</th>
-                <th>รหัสพนักงาน</th>
-                <th>ตำแหน่ง</th>
-                <th>สถานะ</th>
-                <th>เริ่มงานเมื่อ</th>
-                <th>อายุงาน</th>
-                <th>ตัวเลือก</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>รวิศ เศวตปาล</td>
-                <td>AD-213</td>
-                <td>แอดมินระบบ</td>
-                <td>ทำงานอยู่</td>
-                <td>2020-01-10</td>
-                <td>62 เดือน</td>
-                <td>
-                    <a href="employee_profile.php" class="btn-small">ดูโปรไฟล์</a>
-                    <a href="#" class="btn-small">แก้ไข</a>
-                    <a href="#" class="btn-small btn-delete">ลบ</a>
-                </td>
-            </tr>
-            <tr>
-                <td>ไตรภพ ศิระเมฆา</td>
-                <td>MG-127</td>
-                <td>ผู้จัดการร้าน</td>
-                <td>ไม่ได้ทำขณะนี้</td>
-                <td>2020-05-18</td>
-                <td>58 เดือน</td>
-                <td>
-                    <a href="employee_profile.php" class="btn-small">ดูโปรไฟล์</a>
-                    <a href="#" class="btn-small">แก้ไข</a>
-                    <a href="#" class="btn-small btn-delete">ลบ</a>
-                </td>
-            </tr>
-            <tr>
-                <td>ภัทร ภิรมย์เวช</td>
-                <td>ST-119</td>
-                <td>เชฟ</td>
-                <td>ทำงานอยู่</td>
-                <td>2021-11-02</td>
-                <td>41 เดือน</td>
-                <td>
-                    <a href="employee_profile.php" class="btn-small">ดูโปรไฟล์</a>
-                    <a href="#" class="btn-small">แก้ไข</a>
-                    <a href="#" class="btn-small btn-delete">ลบ</a>
-                </td>
-            </tr>
-            <tr>
-                <td>ปราชญ์ นาคินทรา</td>
-                <td>ST-143</td>
-                <td>ดูแลโต๊ะ</td>
-                <td>ทำงานอยู่</td>
-                <td>2023-03-30</td>
-                <td>24 เดือน</td>
-                <td>
-                    <a href="employee_profile.php" class="btn-small">ดูโปรไฟล์</a>
-                    <a href="#" class="btn-small">แก้ไข</a>
-                    <a href="#" class="btn-small btn-delete">ลบ</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="employee-list">
+        <div class="employee-box">
+            <div class="employee-info">
+                <div class="employee-name">รวิศ เศวตปาล</div>
+                <div class="employee-details">AD-213 • เริ่มงาน: 2020-01-10 • อายุงาน: 62 เดือน</div>
+            </div>
+            <div class="employee-meta">
+                <span class="badge role">แอดมินระบบ</span>
+                <span class="status status-working">ทำงานอยู่</span>
+                <a href="#" class="btn-small">ดูโปรไฟล์</a>
+                <a href="#" class="btn-small">แก้ไข</a>
+                <a href="#" class="btn-small btn-delete">ลบ</a>
+            </div>
+        </div>
+
+        <div class="employee-box">
+            <div class="employee-info">
+                <div class="employee-name">ไตรภพ ศิระเมฆา</div>
+                <div class="employee-details">MG-127 • เริ่มงาน: 2020-05-18 • อายุงาน: 58 เดือน</div>
+            </div>
+            <div class="employee-meta">
+                <span class="badge role">ผู้จัดการร้าน</span>
+                <span class="status status-inactive">ไม่ได้ทำขณะนี้</span>
+                <a href="#" class="btn-small">ดูโปรไฟล์</a>
+                <a href="#" class="btn-small">แก้ไข</a>
+                <a href="#" class="btn-small btn-delete">ลบ</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="exit-button" onclick="location.href='login.php'">
+    <img src="img/picture/Exit_door.png" alt="Exit">
+</div>
 </body>
 </html>

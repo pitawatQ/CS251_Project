@@ -31,7 +31,7 @@ table td {
 table tr:hover {
     background-color: #f1f1f1;
 }
-.btn, .btn-small {
+.btn {
     text-decoration: none;
     display: inline-block;
     padding: 6px 12px;
@@ -42,7 +42,7 @@ table tr:hover {
     border: none;
     font-size: 14px;
 }
-.btn:hover, .btn-small:hover {
+.btn:hover {
     background-color: #45a049;
 }
 .btn-delete {
@@ -50,24 +50,6 @@ table tr:hover {
 }
 .btn-delete:hover {
     background-color: #da190b;
-}
-.btn-small {
-    font-size: 12px;
-    padding: 4px 8px;
-}
-.detail-table {
-    width: 50%;
-    border-collapse: collapse;
-}
-.detail-table th {
-    background-color: #f2f2f2;
-    text-align: left;
-    padding: 8px;
-    width: 150px;
-    vertical-align: top;
-}
-.detail-table td {
-    padding: 8px;
 }
 .form-group {
     margin-bottom: 15px;

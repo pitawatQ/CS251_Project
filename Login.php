@@ -17,17 +17,14 @@ $toggleState = $passwordType === 'text' ? 'hide' : 'show';
             <img src="img/picture/logo.png" alt="Logo" class="logo">
             <h1>ThaiTaste & Theory</h1>
             <p class="tagline">Twist of Taste</p>
-            <form action="" method="POST">
+            <form action="backend/login.php" method="POST" method="POST">
                 <div class="input-group">
                     <img src="img/picture/Person_pictogram.png" alt="Person Icon" class="icon">
-                    <input type="text" name="id" placeholder="ID" required>
+                    <input type="text" name="ID" placeholder="ID" required>
                 </div>
                 <div class="input-group">
                     <img src="img/picture/Lock.png" alt="Lock Icon" class="icon">
                     <input type="<?php echo $passwordType; ?>" name="password" placeholder="Password" required>
-                    <button type="submit" name="toggle_password" value="<?php echo $toggleState; ?>" class="toggle-password">
-                        <img src="img/picture/<?php echo $toggleState === 'show' ? 'Eyeball.png' : 'Eyeball_open.png'; ?>" alt="Toggle Password" class="toggle-icon">
-                    </button>
                 </div>
                 <a href="forgot_password.php" class="forgot-password">Forgot password?</a>
                 <button type="submit" class="login-button">Log in</button>

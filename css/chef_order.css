@@ -1,0 +1,41 @@
+/* chef_order.css */
+@import url('payment.css');
+
+/* ปรับ dropdown ให้ใหญ่ขึ้น */
+.info select {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    background-color: white;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+
+.sub-item {
+  font-size: 14px;
+  color: #666;
+}
+
+.status {
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+}
+
+.status.done {
+  background-color: #28c95b;
+}
+
+.status.cancel {
+  background-color: #e74c3c;
+}
+
+td select {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}

@@ -20,13 +20,13 @@ if ($result->num_rows == 1) {
 
         switch ($_SESSION['Role']) {
             case 'staff':
-                header("Location: ../frontend/");
+                header("Location: ../staff_dashboard.php");
                 exit();
             case 'admin':
-                header("Location: ../frontend/");
+                header("Location: ../admin_dashboard.php");
                 exit();
             case 'manager':
-                header("Location: ../frontend/");
+                header("Location: ../admin_dashboard.php");
                 exit();
             default:
                 echo "ไม่พบสิทธิ์การใช้งานที่กำหนด";

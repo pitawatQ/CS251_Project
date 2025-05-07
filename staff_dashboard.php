@@ -1,3 +1,24 @@
+<?php
+session_start();
+include 'backend/db_connect.php'; // ปรับ path ตามจริง
+include 'backend/auth.php'; // ถ้ามีระบบ auth
+
+// ตรวจสอบว่าเข้าสู่ระบบหรือยัง
+if (!isset($_SESSION['EmployeeID'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$employeeID = $_SESSION['EmployeeID'];
+
+$stmt = $conn->prepare("SELECT FName, EmployeeID FROM Employee WHERE EmployeeID = ?");
+$stmt->bind_param("i", $employeeID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +30,8 @@
 <div class="profile-box">
     <img src="img/picture/Profile_guy.png" alt="Profile Picture">
     <div class="profile-info">
-        <p class="profile-name">พีรพล</p>
-        <p class="profile-id">ID: EC-300</p>
+    <p class="profile-name"><?php echo htmlspecialchars($profile['FName']); ?></p>
+    <p class="profile-id">ID: <?php echo htmlspecialchars($profile['EmployeeID']); ?></p>
     </div>
 </div>
 <div class="container">
