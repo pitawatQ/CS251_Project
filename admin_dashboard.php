@@ -15,11 +15,11 @@
 </div>
 <div class="container">
     <div class="menu">
-        <div class="menu-item" onclick="location.href='overview.php'">
+        <div class="menu-item" onclick="location.href='daily_report.php'">
             <img src="img/picture/Pie_chart.png" alt="ภาพรวมร้านวันนี้">
             <p>ภาพรวมร้านวันนี้</p>
         </div>
-        <div class="menu-item" onclick="location.href='sales_report.php'">
+        <div class="menu-item" onclick="location.href='weekly_report.php'">
             <img src="img/picture/Report_clipboard.png" alt="ยอดขาย & รายงาน">
             <p>ยอดขาย & รายงาน</p>
         </div>

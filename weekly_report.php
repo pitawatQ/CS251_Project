@@ -1,27 +1,34 @@
+<?php
+session_start();
+include 'backend/db_connect.php';
+include 'backend/auth.php';  // ตรวจสอบ session
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Weekly Report</title>
     <link rel="stylesheet" type="text/css" href="css/weekly_report.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
     <div class="report-box">
         <p>📈 ภาพรวมรายได้รายสัปดาห์</p>
-        <canvas id="weeklyChart"></canvas> <!-- Canvas for the bar chart -->
+        <canvas id="weeklyChart"></canvas>
     </div>
 </div>
 
 <div class="profile-box">
     <img src="img/picture/Profile_guy.png" alt="Profile Picture">
     <div class="profile-info">
-        <p class="profile-name">ธีธัต</p>
-        <p class="profile-id">ID: SC-316</p>
+        <p class="profile-name"><?= $_SESSION['FName'] ?? 'ไม่ทราบชื่อ' ?></p>
+        <p class="profile-id">ID: <?= $_SESSION['EmployeeID'] ?? '??' ?></p>
     </div>
 </div>
+
 <div class="home-button" onclick="location.href='index.php'">
     <img src="img/picture/Home_icon.png" alt="Home Icon">
     <p>หน้าหลัก</p>
@@ -31,47 +38,42 @@
 </div>
 
 <script>
-    // JavaScript to render the bar chart
-    const ctx = document.getElementById('weeklyChart').getContext('2d');
-    const weeklyChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'], // Days of the week
-            datasets: [{
-                label: 'รายได้ (บาท)',
-                data: [7120, 8500, 9200, 8700, 9400, 12000, 8900], // Example data
-                backgroundColor: '#28c95b', // Bar color
-                borderColor: '#1e8f47', // Border color
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true, // Ensure the chart respects the container's aspect ratio
-            layout: {
-                padding: {
-                    top: 10, // Add padding to prevent labels from overlapping
-                    bottom: 50
-                }
+fetch('backend/get_weekly_sales.php')
+    .then(res => res.json())
+    .then(data => {
+        const ctx = document.getElementById('weeklyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
+                datasets: [{
+                    label: 'รายได้ (บาท)',
+                    data: data,
+                    backgroundColor: '#28c95b',
+                    borderColor: '#1e8f47',
+                    borderWidth: 1
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 3500 // Adjust step size for better readability
+            options: {
+                responsive: true,
+                layout: {
+                    padding: { top: 10, bottom: 50 }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 3000 }
                     }
-                }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `รายได้: ฿${context.raw}`; // Custom tooltip format
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: context => `รายได้: ฿${context.raw}`
                         }
                     }
                 }
             }
-        }
+        });
     });
 </script>
 

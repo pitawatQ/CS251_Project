@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div class="menu">
-        <div class="menu-item" onclick="location.href='frontend.php'">
+        <div class="menu-item" onclick="location.href='home_customer.php'">
             <img src="img/front.png" alt="หน้าขาย">
         </div>
         <div class="menu-item" onclick="location.href='login.php'">

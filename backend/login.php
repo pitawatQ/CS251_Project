@@ -29,14 +29,20 @@ if ($result->num_rows == 1) {
                 header("Location: ../admin_dashboard.php");
                 exit();
             default:
-                echo "ไม่พบสิทธิ์การใช้งานที่กำหนด";
-        }
+                $_SESSION['error'] = 'role';
+                header("Location: ../login.php");
+                exit();
+         }
 
     } else {
-        echo "รหัสผ่านไม่ถูกต้อง";
+        $_SESSION['error'] = 'pass';
+        header("Location: ../login.php");
+        exit();
     }
 } else {
-    echo "ไม่พบผู้ใช้นี้";
+    $_SESSION['error'] = 'user';
+    header("Location: ../login.php");
+    exit();
 }
 
 $conn->close();

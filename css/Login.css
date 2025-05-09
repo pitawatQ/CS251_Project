@@ -65,55 +65,39 @@ h1 {
 .input-group {
     position: relative;
     margin-bottom: 20px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px 10px 10px 40px; /* Add padding to the left for the lock icon */
-    border: 1px solid #ccc;
-    border-radius: 25px; /* Make the input box more rounded */
-    font-size: 16px;
-    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group .icon {
     position: absolute;
-    left: 15px; /* Move the icons slightly rightward */
-    top: 45%;
-    transform: translateY(-50%);
-    width: 18px; /* Adjust icon size */
-    height: 18px;
-    object-fit: contain; /* Maintain the original aspect ratio */
-}
-
-.input-group .toggle-password {
-    position: absolute;
-    right: 20px; /* Move the toggle button slightly leftward */
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+    width: 18px;
+    height: 18px;
+    pointer-events: none; /* ป้องกัน icon บังการคลิก */
 }
 
-.input-group .toggle-password .toggle-icon {
-    width: 25px; /* Increase the width */
-    height: 25px; /* Increase the height */
-    object-fit: contain; /* Maintain the original aspect ratio */
+.input-group input {
+    padding: 10px 10px 10px 40px; /* เผื่อที่ให้ไอคอน */
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-size: 16px;
+    border: 1px solid #ccc;
 }
 
-.forgot-password {
-    display: block;
-    margin: 50px auto; /* Center horizontally and add spacing above */
-    font-size: 14px;
-    color: #28a745;
-    text-decoration: none;
-    text-align: center; /* Center-align the text */
+.error-msg {
+    height: 16px; /* จองพื้นที่ไว้ตลอด */
+    margin-top: 5px;
 }
 
-.forgot-password:hover {
-    text-decoration: underline;
+.error {
+    color: red;
+    font-size: 0.85em;
+    margin: 0;
+    text-align: center; /* แนะนำเพิ่มถ้าอยากให้ข้อความอยู่กลาง */
 }
 
 .login-button {

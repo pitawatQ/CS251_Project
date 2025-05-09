@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'backend/db_connect.php'; // ปรับ path ตามจริง
-include 'backend/auth.php'; // ถ้ามีระบบ auth
+include 'backend/db_connect.php'; 
+include 'backend/auth.php'; 
 
 // ตรวจสอบว่าเข้าสู่ระบบหรือยัง
 if (!isset($_SESSION['EmployeeID'])) {
