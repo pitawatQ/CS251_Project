@@ -44,7 +44,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             <img src="img/picture/Blue_correct_mark.png" alt="สถานะอาหาร">
             <p>สถานะอาหาร</p>
         </div>
-        <div class="menu-item" onclick="location.href='statistics.php'">
+        <div class="menu-item" onclick="location.href='chef_order.php'">
             <img src="img/picture/3D_chief.png" alt="พื้นที่ครัว">
             <p>พื้นที่ครัว</p>
         </div>

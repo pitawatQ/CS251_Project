@@ -30,31 +30,46 @@ body {
     object-fit: cover;
   }
   
-  .profile-box img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  }
-  
-  .profile-info {
+  .profile-box {
+    position: absolute;
+    top: 3%;
+    right: 13.35%;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .profile-name {
+    align-items: center;
+    background-color: white;
+    border: 3.5px solid #20d058;
+    border-radius: 40px;
+    padding: 5px 12px;
+}
+.profile-box img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-right: 5px;
+    object-fit: cover;
+}
+.profile-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack profile-name and profile-id vertically */
+    gap: 5px; /* Add spacing between profile-name and profile-id */
+}
+.profile-name {
     font-size: 17px;
     font-weight: bold;
-  }
-  
-  .profile-id {
+    color: #333;
+    margin: -2px;
+}
+.profile-id {
     font-size: 11px;
-    background-color: #28c95b;
-    color: white;
-    border-radius: 20px;
-    padding: 3.5px 10px;
-    display: inline-block;
-  }
+    background-color: #20d058; /* Light background color for the box */
+    border-radius: 20px; /* Rounded corners */
+    padding: 3.5px 10px; /* Padding inside the box */
+    color: white; /* Text color for contrast */
+    font-weight: bold; /* Make the text bold */
+    display: inline-block; /* Ensure the box wraps only the content */
+    margin: 0; /* Remove default margin */
+}
   
   .container {
     background-color: white;
@@ -155,8 +170,6 @@ body {
     box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.3);
     z-index: 999; 
   }
-  
-
   
   .exit-button img {
     width: 100%;
