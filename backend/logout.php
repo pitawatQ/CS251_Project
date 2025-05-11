@@ -4,6 +4,6 @@ session_unset();
 session_destroy(); 
 
 
-header("Location: ..index.php?logout=1");
+header("Location: ../login.php");
 exit();
 ?>

@@ -193,8 +193,8 @@ td select {
 .table-wrapper::-webkit-scrollbar {
   width: 10px;
 }
-.status-btn.canceled {
-  background-color: #ccc;
-  ;
-}
 
+
+.status-btn.done {
+  background-color: #ccc;
+}

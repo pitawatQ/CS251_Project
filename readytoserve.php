@@ -9,12 +9,6 @@ if (!isset($_SESSION['EmployeeID'])) {
     exit();
 }
 
-// ลบออเดอร์ที่ยกเลิกมาแล้วเกิน 5 นาที
-$conn->query("
-    DELETE o, od FROM Orders o
-    JOIN OrderDetail od ON o.OrderID = od.OrderID
-    WHERE o.Status = 0 AND TIMESTAMPDIFF(MINUTE, o.OrderTime, NOW()) >= 5
-");
 
 $employeeID = $_SESSION['EmployeeID'];
 
@@ -28,9 +22,9 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>คำสั่งอาหาร</title>
+  <title>อาหารที่ต้องเสิร์ฟ</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/chef_order.css">
+  <link rel="stylesheet" href="css/readytoserve.css">
 </head>
 <body>
 <div class="top-bar">
@@ -48,7 +42,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
 </div>
 
 <div class="container">
-  <h2>🍽️ คำสั่งอาหาร</h2>
+  <h2>🍽️ อาหารที่ต้องเสิร์ฟ</h2>
   <div class="table-wrapper">
     <table>
       <thead>
@@ -68,7 +62,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
               FROM Orders o
               JOIN OrderDetail od ON o.OrderID = od.OrderID
               JOIN Menu m ON od.MenuID = m.MenuID
-              WHERE o.Status IN (2, 3, 0)
+              WHERE o.Status IN (4, 5)
               GROUP BY o.OrderID
               ORDER BY o.OrderTime DESC";
 
@@ -100,26 +94,23 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
         <td><span class="status <?php echo $statusClass; ?>"><?php echo $statusText; ?></span></td>
         <td><?php echo date('H:i', strtotime($row['OrderTime'])); ?></td>
         <td>
-          <?php if ($status !== 0): ?>
-            <form action="backend/update_order.php" method="POST" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการดำเนินการนี้?');">
+          <?php if ($status === 4): ?>
+            <form action="backend/update_order.php" method="POST" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการเสิร์ฟออเดอร์นี้?');">
               <input type="hidden" name="OrderID" value="<?php echo $row['OrderID']; ?>">
-              <input type="hidden" name="redirect" value="chef_order.php">
-              <button type="submit" name="action" value="next" class="status-btn next">ดำเนินการต่อ</button>
-              <button type="submit" name="action" value="cancel" class="status-btn cancel">ยกเลิก</button>
+              <input type="hidden" name="redirect" value="readytoserve.php">
+              <button type="submit" name="action" value="next" class="status-btn next">ดำเนินการเสิร์ฟ</button>
             </form>
-          <?php else: ?>
-            <button class="status-btn canceled" disabled>ยกเลิก</button>
+          <?php elseif ($status === 5): ?>
+            <button class="status-btn done" disabled>เสร็จสิ้น</button>
           <?php endif; ?>
         </td>
-      </tr>
-      <?php endwhile; ?>
+        <?php endwhile; ?>
       </tbody>
     </table>
   </div>
 </div>
 
 
-<script src="backend/auto_refresh.js"></script>
-
+<script src="js/auto_refresh.js"></script>
 </body>
 </html>

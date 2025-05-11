@@ -36,11 +36,11 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
 </div>
 <div class="container">
     <div class="menu">
-        <div class="menu-item" onclick="location.href='overview.php'">
+        <div class="menu-item" onclick="location.href='readytoserve.php'">
             <img src="img/picture/clipboard_with_pen.png" alt="คำสั่งซื้อที่ต้องเสิร์ฟ">
             <p>คำสั่งซื้อที่ต้องเสิร์ฟ</p>
         </div>
-        <div class="menu-item" onclick="location.href='sales_report.php'">
+        <div class="menu-item" onclick="location.href='status_order.php'">
             <img src="img/picture/Blue_correct_mark.png" alt="สถานะอาหาร">
             <p>สถานะอาหาร</p>
         </div>
@@ -48,7 +48,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             <img src="img/picture/3D_chief.png" alt="พื้นที่ครัว">
             <p>พื้นที่ครัว</p>
         </div>
-        <div class="menu-item" onclick="location.href='menu_management.php'">
+        <div class="menu-item" onclick="location.href='table_status.php'">
             <img src="img/picture/Table_with_Chair.png" alt="จัดการโต๊ะ">
             <p>จัดการโต๊ะ</p>
         </div>
@@ -78,8 +78,12 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
         </div>
     </div>
 </div>
-<div class="exit-button" onclick="location.href='login.php'">
-    <img src="img/picture/Exit_door.png" alt="Exit">
+<div class="exit-button" onclick="confirmLogout()">
+  <img src="img/picture/Exit_door.png" alt="Exit">
 </div>
+
+<script src="backend/logout.js"></script>
+
+
 </body>
 </html>
