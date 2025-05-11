@@ -1,21 +1,22 @@
 <?php
-require 'db_connect.php';
+require 'db_connect.php'; 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+    $data = json_decode(file_get_contents("php://input"), true); 
 
-    if (!empty($data['FName']) && !empty($data['LName']) && !empty($data['Password']) && !empty($data['Role']) && !empty($data['StartDate']) && !empty($data['Phone']) && !empty($data['Email'])) {
-        $query = "INSERT INTO employee (FName, LName, Password, Role, StartDate, Phone, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    if (isset($data['EmployeeID']) && isset($data['FName']) && isset($data['LName']) && isset($data['Password']) && isset($data['Role']) && isset($data['StartDate']) && isset($data['Phone']) && isset($data['Email'])) {
+        $query = "INSERT INTO employee (EmployeeID, FName, LName, Password, Role, StartDate, Phone, Email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("sssssss", $data['FName'], $data['LName'], $data['Password'], $data['Role'], $data['StartDate'], $data['Phone'], $data['Email']);
+        $stmt->bind_param("isssssss", $data['EmployeeID'], $data['FName'], $data['LName'], $data['Password'], $data['Role'], $data['StartDate'], $data['Phone'], $data['Email']);
 
-        if ($stmt->execute()) {
+        if ($stmt->execute()) { 
             echo json_encode(["status" => "success", "message" => "เพิ่มพนักงานสำเร็จ"]);
         } else {
-            echo json_encode(["status" => "error", "message" => "เกิดข้อผิดพลาด"]);
+            echo json_encode(["status" => "error", "message" => "เกิดข้อผิดพลาดในการเพิ่มข้อมูล"]);
         }
     } else {
-        echo json_encode(["status" => "error", "message" => "ข้อมูลไม่ครบ"]);
+        echo json_encode(["status" => "error", "message" => "กรุณาระบุข้อมูลให้ครบถ้วน"]);
     }
 }
 ?>
+
