@@ -41,30 +41,30 @@
           <h2>เมนู | หมวดหมู่</h2>
         </div>
         <div class="category-bar">
-          <div class="menu-category-item">
+          <a href="recommend_menu.php" class="menu-category-item">
             <img src="pics/rec.png" alt="เมนูแนะนำ">
             <div class="label">เมนูแนะนำ</div>
-          </div>
-          <div class="menu-category-item">
+          </a>
+          <a href="single_menu.php" class="menu-category-item">
             <img src="pics/single.png" alt="เมนูเดี่ยว">
             <div class="label">เมนูเดี่ยว</div>
-          </div>
-          <div class="menu-category-item">
+          </a>
+          <a href="set_menu.php" class="menu-category-item">
             <img src="pics/set.png" alt="เมนูเซ็ต">
             <div class="label">เมนูเซ็ต</div>
-          </div>
-          <div class="menu-category-item">
+          </a>
+          <a href="noodles_menu.php" class="menu-category-item">
             <img src="pics/noodles.png" alt="เมนูเส้น">
             <div class="label">เมนูเส้น</div>
-          </div>
-          <div class="menu-category-item">
+          </a>
+          <a href="beverages_menu.php" class="menu-category-item">
             <img src="pics/bev.png" alt="เครื่องดื่ม">
             <div class="label">เครื่องดื่ม</div>
-          </div>
-          <div class="menu-category-item">
+          </a>
+          <a href="desserts_menu.php" class="menu-category-item">
             <img src="pics/sweet.png" alt="ของหวาน">
             <div class="label">ของหวาน</div>
-          </div>
+          </a>
         </div>
         <div class="gradient-line"></div>
         <div class="tags">
@@ -121,8 +121,9 @@
       </div>
     </div>
   </div>
+  
   <script>
-    /// ฟังก์ชันคำนวณราคารวม (คงเดิม)
+    /// ฟังก์ชันคำนวณราคารวม
     function calculateTotal() {
       let total = 0;
       document.querySelectorAll('.cart-item').forEach(item => {
