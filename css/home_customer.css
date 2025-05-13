@@ -301,6 +301,7 @@
       height: 80px;
       object-fit: contain;
       margin-bottom: 10px;
+      margin-top: 50px;
     }
 
     #cart-items {
