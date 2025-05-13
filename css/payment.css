@@ -7,78 +7,79 @@ body {
   }
   
   .top-bar {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .profile-box, .home-button {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3px solid #28c95b;
-    border-radius: 40px;
-    padding: 3px 20px;
-  }
-  
-  .home-button img, .profile-box img {
-    width: 60px;
-    height: 60px;
-    margin-right: 5px;
-    object-fit: cover;
-  }
-  
-  .profile-box {
-    position: absolute;
-    top: 3%;
-    right: 13.35%;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3.5px solid #20d058;
-    border-radius: 40px;
-    padding: 5px 12px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
 }
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
 .profile-box img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    margin-right: 5px;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
 }
-.profile-info {
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack profile-name and profile-id vertically */
-    gap: 5px; /* Add spacing between profile-name and profile-id */
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
+
 .profile-name {
-    font-size: 17px;
-    font-weight: bold;
-    color: #333;
-    margin: -2px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
+
 .profile-id {
-    font-size: 11px;
-    background-color: #20d058; /* Light background color for the box */
-    border-radius: 20px; /* Rounded corners */
-    padding: 3.5px 10px; /* Padding inside the box */
-    color: white; /* Text color for contrast */
-    font-weight: bold; /* Make the text bold */
-    display: inline-block; /* Ensure the box wraps only the content */
-    margin: 0; /* Remove default margin */
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
 }
+
   
-  .container {
+.container {
     background-color: white;
     width: 70%;
     margin: 120px auto;
     padding: 40px;
     border-radius: 40px;
     border: 8px solid #969696;
-  }
+    height: 600px;
+
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Space out elements, pushing buttons to the bottom */
+}
   
   h2 {
     text-align: center;
@@ -120,24 +121,31 @@ body {
     font-size: 14px;
   }
   
-  .summary {
-    width: 90%;
-    margin: 20px auto;
-    text-align: right;
-    font-size: 16px;
-  }
+.summary {
+  width: 90%;
+  margin-top: 30px; /* เพิ่มระยะห่างจากตาราง */
+  text-align: right;
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+
   
-  .total {
+
+.total {
+    display: block;
     font-weight: bold;
     font-size: 20px;
-  }
+}
+
   
-  .button-row {
+
+.button-row {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
-  }
+    align-self: flex-end; /* Ensure the button row stays at the bottom */
+    margin-top: auto; /* Push the buttons to the bottom of the container */
+}
   
   .pay-button {
     background-color: black;
@@ -145,7 +153,6 @@ body {
     border-radius: 25px;
     padding: 10px 20px;
     font-size: 16px;
-    display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
@@ -156,23 +163,16 @@ body {
     height: 24px;
   }
   
-  .exit-button {
-    position: fixed; 
-    bottom: 3%;
-    right: 3%;
-    width: 65px;
-    height: 65px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.3);
-    z-index: 999; 
-  }
-  
-  .exit-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+.confirm-pay {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.confirm-pay:hover {
+  background-color: #218838;
+}

@@ -61,16 +61,15 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             $statusText = match ($statusCode) {
                 0 => 'ว่าง',
                 1 => 'กำลังใช้งาน',
-                2 => 'รอเช็กบิล',
                 default => 'ไม่ทราบ'
             };
 
             $statusClass = match ($statusCode) {
                 0 => 'green',
                 1 => 'red',
-                2 => 'blue',
                 default => 'gray'
             };
+
 
             // ตรวจสอบว่าเคยมีออเดอร์ไหม
             $check = $conn->prepare("SELECT COUNT(*) FROM Orders WHERE TableNo = ?");
@@ -79,12 +78,28 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             $check->bind_result($orderCount);
             $check->fetch();
             $check->close();
+            // อัปเดตสถานะโต๊ะเป็น 1 ถ้ามีออเดอร์ที่ยังไม่จ่าย
+            $hasUnpaid = $conn->prepare("SELECT COUNT(*) FROM Orders WHERE TableNo = ? AND Status != 6");
+            $hasUnpaid->bind_param("i", $tableID);
+            $hasUnpaid->execute();
+            $hasUnpaid->bind_result($unpaidCount);
+            $hasUnpaid->fetch();
+            $hasUnpaid->close();
+
+            if ($unpaidCount > 0 && $statusCode != 1) {
+                $updateStatus = $conn->prepare("UPDATE tablelist SET Status = 1 WHERE TableNo = ?");
+                $updateStatus->bind_param("i", $tableID);
+                $updateStatus->execute();
+                $updateStatus->close();
+                $statusCode = 1; // ปรับสถานะที่ใช้แสดงผลทันที
+            }
+
 
             echo "<div class='table-box {$statusClass}'>";
             echo "<div class='table-title'>โต๊ะ {$tableID}</div>";
             echo "<div class='status-line'>สถานะ: {$statusText}</div>";
             echo "<div class='button-group'>";
-            echo "<a href='backend/checkbill.php?id={$tableID}' class='btn check'>เช็คบิล</a>";
+            echo "<a href='payment.php?table={$tableID}' class='btn check'>เช็คบิล</a>";
             
             if ($orderCount == 0) {
                 echo "<form action='backend/delTable.php' method='POST' onsubmit='return confirm(\"คุณแน่ใจหรือไม่ว่าต้องการลบโต๊ะนี้?\");'>";
