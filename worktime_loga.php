@@ -40,7 +40,7 @@ $historyResult = $historyStmt->get_result();
 </head>
 <body>
   <div class="top-bar">
-    <div class="home-button" onclick="location.href='staff_dashboard.php'">
+    <div class="home-button" onclick="location.href='admin_dashboard.php'">
       <img src="pics/Home_icon.png">
       <p>หน้าหลัก</p>
     </div>

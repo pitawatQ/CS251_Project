@@ -22,46 +22,66 @@ body {
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center both horizontally and vertically */
 }
-  .profile-box {
-    position: fixed;
-    top: 3%;
-    right: 13.35%;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3.5px solid #20d058;
-    border-radius: 40px;
-    padding: 5px 12px;
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
 }
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
 .profile-box img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    margin-right: 5px;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
 }
-.profile-info {
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack profile-name and profile-id vertically */
-    gap: 5px; /* Add spacing between profile-name and profile-id */
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
+
 .profile-name {
-    font-size: 17px;
-    font-weight: bold;
-    color: #333;
-    margin: -2px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
+
 .profile-id {
-    font-size: 11px;
-    background-color: #20d058; /* Light background color for the box */
-    border-radius: 20px; /* Rounded corners */
-    padding: 3.5px 10px; /* Padding inside the box */
-    color: white; /* Text color for contrast */
-    font-weight: bold; /* Make the text bold */
-    display: inline-block; /* Ensure the box wraps only the content */
-    margin: 0; /* Remove default margin */
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
 }
+
   /* ===== Header Bar (Title & Add Button) ===== */
   .header-bar {
     display: flex;
@@ -165,21 +185,23 @@ body {
   }
   
   /* ขนาดเล็กจริง ๆ */
-  .btn-small {
-    font-size: 12px;
-    padding: 4px 10px;
-  }
+.btn-small {
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 10px;
+}
+
   
-  .btn-delete {
-    background-color: #f44336;
-    color: white; /* ✅ ตัวอักษรสีขาว */
-    text-align: center;
-    border: orangered;
-  }
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
   
-  .btn-delete:hover {
-    background-color: #da190b;
-  }
+.btn-delete:hover {
+  background-color: #c62828;
+}
   
 
   
@@ -229,23 +251,24 @@ body {
   }
   
   .employee-info {
-    flex: 0 0 40%;
+    flex: 0 0 50%;
     width: 40%; /* เพิ่มตรงนี้ */
     min-width: 0; 
   }
   
-  .employee-meta {
-    flex: 0 0 60%;
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%; /* ตำแหน่ง, สถานะ, โปรไฟล์, แก้ไข, ลบ */
-    align-items: center;
-    justify-content: end;
-    gap: 8px;
-  }
+.employee-meta {
+  display: grid;
+  grid-template-columns: 150px 160px 130px 80px; /* กำหนดความกว้างที่ชัดเจน */
+  gap: 20px;
+  align-items: center;
+  justify-content: end;
+  padding-left: 20px;;
+}
+
   
   .employee-name {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 4px;
   }
   
@@ -267,14 +290,16 @@ body {
   }
   
   /* สถานะ */
-  .status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    border: 1px solid transparent;
-    text-align: center;
-  }
+.status {
+  display: flex;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
   
   .status-working {
     background-color: #e9f7ef;
@@ -287,23 +312,32 @@ body {
     color: #ff6f00;
     border-color: #ffeeba;
   }
-  .exit-button {
-    position: absolute;
-    bottom: 7%;
-    right: 5%;
-    width: 65px;
-    height: 65px;
-    background-color: white;
-    border-radius: 50%; /* Make it circular */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
+.badge {
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3f2fd;
+  color: #03a9f4;
+  border: 1px solid #03a9f4;
 }
 
-.exit-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.badge-default {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+/* สถานะ */
+.status-working {
+  background-color: #e6ffe6;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+.status-inactive {
+  background-color: #fabdb8;
+  color: #ff1100;
+  border: 1px solid #ff1100;
 }

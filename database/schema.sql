@@ -28,7 +28,7 @@ CREATE TABLE Menu (
 
 -- Table: Employee
 CREATE TABLE Employee (
-    EmployeeID INT(6) PRIMARY KEY,
+    EmployeeID INT(6) AUTO_INCREMENT PRIMARY KEY,
     FName VARCHAR(50),
     LName VARCHAR(50),
     Password VARCHAR(12),

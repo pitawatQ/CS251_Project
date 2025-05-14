@@ -9,7 +9,7 @@ $importDate = date("Y-m-d");
 $lastUpdate = $importDate;
 
 $quantity = floatval(preg_replace('/[^0-9.]/', '', $quantityRaw)); // ดึงเฉพาะตัวเลข
-$unit = 'กรัม'; // สมมติว่าใช้หน่วยเดียว
+$unit = 'กิโลกรัม'; // สมมติว่าใช้หน่วยเดียว
 
 // สร้าง IngredientID ใหม่ก่อนใช้
 $result = $conn->query("SELECT MAX(IngredientID) AS maxID FROM stock");

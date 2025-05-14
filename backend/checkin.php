@@ -1,30 +1,27 @@
 <?php
 session_start();
-include 'db_connect.php'; 
+include 'db_connect.php';
 
-if (!isset($_GET['table'])) {
-    header("Location: ../table_status.php");
+if (!isset($_SESSION['EmployeeID'])) {
+    header("Location: ../login.php");
     exit();
 }
 
-$tableNo = intval($_GET['table']);
+$employeeID = $_SESSION['EmployeeID'];
 
-// ดึง Order ล่าสุดของโต๊ะนี้ที่ยังไม่จ่ายเงิน
-$sql = "SELECT OrderID FROM Orders WHERE TableNo = ? AND PaymentStatus = 0 ORDER BY OrderTime DESC LIMIT 1";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $tableNo);
+// บันทึกเวลาเข้างาน ถ้ายังไม่มีบันทึกในวันนี้
+$stmt = $conn->prepare("SELECT * FROM Attendance WHERE EmployeeID = ? AND WorkDate = CURDATE()");
+$stmt->bind_param("i", $employeeID);
 $stmt->execute();
-$stmt->bind_result($orderID);
-$stmt->fetch();
-$stmt->close();
+$result = $stmt->get_result();
 
-if ($orderID) {
-    // ถ้าพบออเดอร์ ส่งไป payment.php
-    header("Location: ../payment.php?table={$tableNo}&order={$orderID}");
-} else {
-    // ไม่พบออเดอร์
-    $_SESSION['error'] = "ไม่พบออเดอร์ที่ยังไม่จ่ายของโต๊ะนี้";
-    header("Location: ../table_status.php");
+if ($result->num_rows === 0) {
+    // ถ้ายังไม่มี record → ให้ insert
+    $insert = $conn->prepare("INSERT INTO Attendance (EmployeeID, WorkDate, ClockInTime) VALUES (?, CURDATE(), CURTIME())");
+    $insert->bind_param("i", $employeeID);
+    $insert->execute();
 }
+
+header("Location: ../worktime_log.php");
 exit();
 ?>
