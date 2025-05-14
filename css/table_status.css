@@ -181,3 +181,25 @@ body {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
+.table-box.yellow {
+    background-color: #fff8c4;
+    border: 3px solid #ffc107;
+    color: #333;
+}
+.ack-form {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.ack-btn {
+  background-color: #ffcc00;
+  color: black;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

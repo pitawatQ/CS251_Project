@@ -24,5 +24,5 @@ $stmt2->execute();
 $stmt2->close();
 
 $_SESSION['success'] = "ชำระเงินสำเร็จ";
-header("Location: ../table_status.php");
+header("Location: receipt.php?ref=$invoiceNo");
 exit();

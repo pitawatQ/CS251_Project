@@ -7,7 +7,7 @@ if ($tableNo) {
     header("Location: ../payment_summary.php?table=$tableNo");
     exit();
 }
-
-header("Location: ../table_status.php");
+header("Location: receipt.php?ref=$invoiceNo");
 exit();
+
 ?>

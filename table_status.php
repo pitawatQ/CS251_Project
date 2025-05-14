@@ -61,12 +61,14 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             $statusText = match ($statusCode) {
                 0 => 'ว่าง',
                 1 => 'กำลังใช้งาน',
+                2 => 'เรียกพนักงาน',
                 default => 'ไม่ทราบ'
             };
 
             $statusClass = match ($statusCode) {
                 0 => 'green',
                 1 => 'red',
+                2 => 'yellow',
                 default => 'gray'
             };
 
@@ -93,6 +95,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
                 $updateStatus->close();
                 $statusCode = 1; // ปรับสถานะที่ใช้แสดงผลทันที
             }
+            
 
 
             echo "<div class='table-box {$statusClass}'>";
@@ -107,6 +110,13 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
                 echo "<button type='submit' class='btn delete'>ลบโต๊ะ</button>";
                 echo "</form>";
             }
+            if ($statusCode == 2) {
+                echo "<form class='ack-form' method='POST' action='backend/acknowledge_call.php'>";
+                echo "<input type='hidden' name='TableID' value='{$tableID}'>";
+                echo "<button class='btn ack-btn' type='submit'>รับทราบ</button>";
+                echo "</form>";
+            }
+
             echo "</div></div>";
         }
 

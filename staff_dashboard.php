@@ -64,15 +64,15 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
 
     <!-- แถวล่าง 3 ปุ่ม -->
     <div class="menu-row">
-        <div class="menu-item" onclick="location.href='overview.php'">
-            <img src="img/picture/Box_on_trolley.png" alt="รับของ/เช็คสินค้าเข้า">
-            <p>รับของ/เช็คสินค้าเข้า</p>
+        <div class="menu-item" onclick="location.href='importHistory.php'">
+            <img src="img/picture/Box_on_trolley.png" alt="เช็คสินค้าเข้า">
+            <p>เช็คสินค้าเข้า</p>
         </div>
         <div class="menu-item" onclick="location.href='worktime_log.php'">
             <img src="img/picture/Time_log.png" alt="บันทึกเวลาเข้าออกงาน">
             <p>บันทึกเวลาเข้าออกงาน</p>
         </div>
-        <div class="menu-item" onclick="location.href='overview.php'">
+        <div class="menu-item" onclick="location.href='historyOrder.php'">
             <img src="img/picture/Paper_with_pen.png" alt="ประวัติคำสั่งซื้อ">
             <p>ประวัติคำสั่งซื้อ</p>
         </div>

@@ -80,13 +80,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_method'])) {
     }
     $stmt->close();
 
+    $lastInvoiceNo = null;
+
     foreach ($orderIDs as $orderID) {
         $stmt = $conn->prepare("UPDATE Orders SET Status = 6 WHERE OrderID = ?");
         $stmt->bind_param("i", $orderID);
         $stmt->execute();
         $stmt->close();
 
-        $invoiceNo = rand(700000, 799999);
+        $invoiceNo = rand(700000, 799999); // สร้างหมายเลขใบเสร็จใหม่
+        $lastInvoiceNo = $invoiceNo; // เก็บไว้สำหรับ redirect ภายหลัง
+
         $discount = 0;
 
         $stmt = $conn->prepare("INSERT INTO Payment (OrderID, PaymentMethod, TotalPaid, PaymentDate, InvoiceNo, TotalDiscount, EmployeeID, Vat)
@@ -95,12 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_method'])) {
         $stmt->execute();
         $stmt->close();
     }
+
+    // เปลี่ยนสถานะโต๊ะ
     $updateTable = $conn->prepare("UPDATE tablelist SET Status = 0 WHERE TableNo = ?");
     $updateTable->bind_param("i", $tableNo);
     $updateTable->execute();
     $updateTable->close();
-    header("Location: table_status.php");
+
+    // ✅ redirect ไปยังใบเสร็จ
+    header("Location: backend/receipt.php?ref=$lastInvoiceNo");
     exit();
+
 }
 ?>
 <!DOCTYPE html>

@@ -38,6 +38,7 @@ $orderQuery = "SELECT o.OrderID, o.TableNo, o.OrderTime, o.Status,
                FROM Orders o
                JOIN OrderDetail od ON o.OrderID = od.OrderID
                JOIN Menu m ON od.MenuID = m.MenuID
+               WHERE o.Status IN (2, 3, 4, 5, 0)
                $where
                GROUP BY o.OrderID
                ORDER BY o.OrderTime DESC";
