@@ -10,13 +10,13 @@ CREATE TABLE TableList (
 
 -- Table: Category
 CREATE TABLE Category (
-    CategoryID INT(2) PRIMARY KEY,
+    CategoryID INT(2) AUTO_INCREMENT PRIMARY KEY,
     CName VARCHAR(50)
 );
 
 -- Table: Menu
 CREATE TABLE Menu (
-    MenuID INT(3) PRIMARY KEY,
+    MenuID INT(3) AUTO_INCREMENT PRIMARY KEY,
     CategoryID INT(2),
     Name VARCHAR(50),
     Price DECIMAL(6,2),
@@ -40,7 +40,7 @@ CREATE TABLE Employee (
 
 -- Table: Orders
 CREATE TABLE Orders (
-    OrderID INT(6) PRIMARY KEY,
+    OrderID INT(6) AUTO_INCREMENT PRIMARY KEY,
     EmployeeID INT(6),
     TableNo INT(3),
     OrderTime TIMESTAMP,

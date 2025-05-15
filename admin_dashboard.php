@@ -49,7 +49,7 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             <img src="img/picture/Magnifying_glass_with_report.png" alt="สถิติ">
             <p>สถิติ</p>
         </div>
-        <div class="menu-item" onclick="location.href='menu_management.php'">
+        <div class="menu-item" onclick="location.href='menu_list.php'">
             <img src="img/picture/Tomato_Stew.png" alt="จัดการเมนูอาหาร">
             <p>จัดการเมนูอาหาร</p>
         </div>
