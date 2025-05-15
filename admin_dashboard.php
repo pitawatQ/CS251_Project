@@ -42,10 +42,10 @@ $profile = $result->fetch_assoc(); // ข้อมูลพนักงาน
             <p>ภาพรวมร้านวันนี้</p>
         </div>
         <div class="menu-item" onclick="location.href='weekly_report.php'">
-            <img src="img/picture/Report_clipboard.png" alt="ยอดขาย & รายงาน">
-            <p>ยอดขาย & รายงาน</p>
+            <img src="img/picture/Report_clipboard.png" alt="ยอดขาย-v'lyxfk">
+            <p>ยอดขายของสัปดาห์นี้</p>
         </div>
-        <div class="menu-item" onclick="location.href='statistics.php'">
+        <div class="menu-item" onclick="location.href='static.php'">
             <img src="img/picture/Magnifying_glass_with_report.png" alt="สถิติ">
             <p>สถิติ</p>
         </div>

@@ -1,9 +1,21 @@
 <?php
 session_start();
 include 'backend/db_connect.php';
-include 'backend/auth.php';  // ตรวจสอบ session
-?>
+include 'backend/auth.php';
 
+if (!isset($_SESSION['EmployeeID'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$employeeID = $_SESSION['EmployeeID'];
+
+$stmt = $conn->prepare("SELECT FName, EmployeeID FROM Employee WHERE EmployeeID = ?");
+$stmt->bind_param("i", $employeeID);
+$stmt->execute();
+$result = $stmt->get_result();
+$profile = $result->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +26,19 @@ include 'backend/auth.php';  // ตรวจสอบ session
 </head>
 <body>
 
+  <div class="top-bar">
+    <div class="home-button" onclick="location.href='admin_dashboard.php'">
+      <img src="pics/Home_icon.png">
+      <p>หน้าหลัก</p>
+    </div>
+    <div class="profile-box">
+      <img src="img/picture/Profile_guy.png" alt="Profile Picture">
+      <div class="profile-label">
+        <p class="profile-name"><?php echo htmlspecialchars($profile['FName']); ?></p>
+        <p class="profile-id">ID: <?php echo htmlspecialchars($profile['EmployeeID']); ?></p>
+      </div>
+    </div>
+  </div>
 <div class="container">
     <div class="report-box">
         <p>📈 ภาพรวมรายได้รายสัปดาห์</p>
@@ -21,21 +46,6 @@ include 'backend/auth.php';  // ตรวจสอบ session
     </div>
 </div>
 
-<div class="profile-box">
-    <img src="img/picture/Profile_guy.png" alt="Profile Picture">
-    <div class="profile-info">
-        <p class="profile-name"><?= $_SESSION['FName'] ?? 'ไม่ทราบชื่อ' ?></p>
-        <p class="profile-id">ID: <?= $_SESSION['EmployeeID'] ?? '??' ?></p>
-    </div>
-</div>
-
-<div class="home-button" onclick="location.href='index.php'">
-    <img src="img/picture/Home_icon.png" alt="Home Icon">
-    <p>หน้าหลัก</p>
-</div>
-<div class="exit-button" onclick="location.href='login.php'">
-    <img src="img/picture/Exit_door.png" alt="Exit">
-</div>
 
 <script>
 fetch('backend/get_weekly_sales.php')
