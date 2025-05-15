@@ -1,5 +1,3 @@
-/* CSS สำหรับหน้า recommend.php (ปรับขนาดรูปภาพเมนูแนะนำ) */
-
 body {
     font-family: 'Sarabun', sans-serif;
     background: url('../pics/background.png');
@@ -109,6 +107,31 @@ body {
     background-color: #e7f7ec;
     border-radius: 20px;
 }
+
+/* CSS เพิ่มเติมสำหรับปุ่มเรียกพนักงาน */
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #call-staff-btn {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 3px solid #ff9800; /* สีปุ่มเรียกพนักงาน */
+            border-radius: 40px;
+            padding: 10px 18px;
+            font-size: 20px;
+            font-weight: bold;
+            gap: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #ff9800; /* สีข้อความปุ่มเรียกพนักงาน */
+        }
+        #call-staff-btn img {
+            width: 24px;
+            height: 24px;
+        }
 
 .gradient-bar {
     height: 15px;
@@ -483,4 +506,70 @@ body {
 
 .add-more-items-btn:hover {
     background-color: #e0e0e0;
+}
+
+/* CSS styles for order status tracking */
+.order-status-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.order-info {
+    margin-bottom: 20px;
+}
+
+.order-info p {
+    margin-bottom: 5px;
+}
+
+.order-id-box {
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.status-tracking {
+    margin-bottom: 20px;
+}
+
+.status-item-wrapper {
+    border: 1px solid #ddd; /* เส้นขอบสำหรับแต่ละสถานะ */
+    border-radius: 5px;
+    margin-bottom: 10px; /* ช่องว่างระหว่างแต่ละสถานะ */
+    padding: 10px; /* ระยะห่างภายในขอบ */
+}
+
+.status-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.status-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.status-description {
+    color: #777;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* สีพื้นหลังสำหรับสถานะ "รับออร์เดอร์แล้ว" */
+.status-item-wrapper.received {
+    background-color: #e6ffe6; 
+    border-color: #a3e4a3; 
+}
+
+#order-new-btn {
+    margin-top: 20px;
+    width: 100%;
+}
+/* Ensure there's enough padding at the bottom of the cart box */
+.cart-box {
+  padding-bottom: 20px;
 }

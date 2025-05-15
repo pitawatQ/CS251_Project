@@ -19,6 +19,9 @@
         <button class="nav-btn active">
           <img src="pics/cook.png" alt="โปรโมชั่น"> โปรโมชั่น
         </button>
+        <button class="nav-btn" id="call-staff-btn">
+          <img src="img\picture\Notifying_bell.png" alt="เรียกพนักงาน"> เรียกพนักงาน
+        </button>
         <div class="table-dropdown">
           <button id="table-btn">เลือกหมายเลขโต๊ะ ▼</button>
           <div class="dropdown-content">
@@ -27,6 +30,7 @@
             <a href="#" class="table-select">โต๊ะ 3</a>
             <a href="#" class="table-select">โต๊ะ 4</a>
             <a href="#" class="table-select">โต๊ะ 5</a>
+           
           </div>
         </div>
       </div>
@@ -140,24 +144,24 @@
           }
 
           listItem.innerHTML = `
-            <div class="cart-item-header">
-              <img src="${item.img}" class="cart-item-img">
-              <div class="cart-item-details">
-                <div class="cart-item-name">${itemName}</div>
-                <div class="menu-description">${description}</div>
-                <div class="cart-item-price">฿ ${item.price.toFixed(2)}</div>
-              </div>
-            </div>
-            <div class="cart-item-controls">
-              <div class="quantity-controls">
-                <button class="quantity-btn decrease-btn">-</button>
-                <span class="quantity">${quantity}</span>
-                <button class="quantity-btn increase-btn">+</button>
-              </div>
-              <textarea class="special-note-cart" placeholder="พิมพ์รายละเอียดเพิ่มเติม"></textarea>
-              <button class="remove-btn">✕</button>
-            </div>
-          `;
+                        <div class="cart-item-header">
+                            <img src="${item.img}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${itemName}</div>
+                                <div class="menu-description">${description}</div>
+                                <div class="cart-item-price">฿ ${item.price.toFixed(2)}</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn">-</button>
+                                <span class="quantity">${quantity}</span>
+                                <button class="quantity-btn increase-btn">+</button>
+                            </div>
+                            <button class="remove-btn">✕</button>
+                        </div>
+                        <textarea class="special-note-cart" placeholder="พิมพ์รายละเอียดเพิ่มเตืม เช่นไม่เอาผัก">${note}</textarea>
+                    `;
           cartItemsContainer.appendChild(listItem);
         }
       }
@@ -334,7 +338,44 @@
         delete selectedMenuItems[itemNameToRemove];
         updateCartDisplay();
       }
-    });
+    // การทำงานเมื่อคลิกปุ่ม "เรียกพนักงาน"
+            if (target.id === 'call-staff-btn') {
+                const tableStatusElement = document.getElementById('table-status');
+                const currentTableText = tableStatusElement.textContent;
+
+                if (currentTableText === 'ยังไม่ได้เลือกโต๊ะ') {
+                    alert('กรุณาเลือกหมายเลขโต๊ะก่อนเรียกพนักงาน');
+                    return;
+                }
+
+                // ดึงหมายเลขโต๊ะ (สมมติว่าข้อความคือ "โต๊ะ X")
+                const tableNumber = currentTableText.split(' ')[1];
+
+                // ส่งคำขอไปยังเซิร์ฟเวอร์เพื่ออัปเดตสถานะโต๊ะ
+                fetch('backend/call_staff.php', { // สร้างไฟล์ call_staff.php เพื่อจัดการการอัปเดต
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `table_no=${tableNumber}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'success') {
+                        alert(`เรียกพนักงานไปยังโต๊ะ ${tableNumber} แล้ว`);
+                        // อาจจะมีการเปลี่ยนแปลง UI เพิ่มเติม เช่น เปลี่ยนสีปุ่ม หรือแสดงข้อความสถานะ
+                    } else {
+                        alert('เกิดข้อผิดพลาดในการเรียกพนักงาน โปรดลองอีกครั้ง');
+                        console.error('Error calling staff:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                });
+            }
+        });
+    
 
     // ระบบเลือกหมายเลขโต๊ะ (คงเดิม)
     document.addEventListener('click', function(event) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>หน้าเมนูแนะนำ</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/home_customer.css">
+    <link rel="stylesheet" href="css/porridge_menu.css">
 </head>
 <body>
     <div class="container">
@@ -52,7 +52,7 @@
                         <img src="pics/single.png" alt="อาหารจานเดียว">
                         <div class="label">อาหารจานเดียว</div>
                     </a>
-                    <a href="tomyum_menu.php" class="menu-category-item" data-category="ต้มยำ">
+                    <a href="tomyum_menu.php" class="menu-category-item active" data-category="ต้มยำ">
                         <img src="pics/tomyum.png" alt="ต้มยำ">
                         <div class="label">ต้มยำ</div>
                     </a>
@@ -67,23 +67,12 @@
                 </div>
                 <div class="gradient-line"></div>
                 <div class="tags">
+                    <div class="tag rec">⭐ ต้มยำ</div>
                     <a href="home_customer.php" class="tag popular">⭐ เมนูยอดนิยม</a>
                     <a href="promotionpage.php" class="tag promo">⭐ โปรโมชั่น </a>
                 </div>
                 <div class="menu-grid">
                     <div class="menu-card" data-item-id="1" data-category="ข้าวต้ม">
-                        <img src="img/menu/porkporridge.jpg" class="menu-img" data-img="img/menu/porkporridge.jpg">
-                        <div class="menu-name">ข้าวต้มหมู</div>
-                        <div class="menu-price">฿ 50</div>
-                        <button class="select-btn">เลือก</button>
-                    </div>
-                    <div class="menu-card" data-item-id="2" data-category="อาหารจานเดียว">
-                        <img src="img/menu/firedricecrab.jpg" class="menu-img" data-img="img/menu/firedricecrab.jpg">
-                        <div class="menu-name">ข้าวผัดปู</div>
-                        <div class="menu-price">฿ 80</div>
-                        <button class="select-btn">เลือก</button>
-                    </div>
-                    <div class="menu-card" data-item-id="3" data-category="ต้มยำ">
                         <img src="img/menu/tomyumkung.jpg" class="menu-img" data-img="img/menu/tomyumkung.jpg">
                         <div class="menu-name">ต้มยำกุ้ง</div>
                         <div class="menu-price">฿ 120</div>
@@ -109,7 +98,7 @@
         </div>
     </div>
 
-    <script>
+  <script>
         // ฟังก์ชันคำนวณราคารวม
         function calculateTotal() {
             let total = 0;
@@ -243,23 +232,23 @@
         });
 
         // การทำงานเมื่อคลิกปุ่ม "ใส่ตะกร้า" (เปลี่ยนเป็น "ยืนยันรายการ" และส่งออร์เดอร์)
-          document.getElementById('submit-order').addEventListener('click', function() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalSection = document.getElementById('cart-total');
-            const emptyCartMessage = document.getElementById('empty-cart');
-            const addMoreButton = document.getElementById('add-more-items-btn');
+           document.getElementById('submit-order').addEventListener('click', function() {
+             const cartItemsContainer = document.getElementById('cart-items');
+             const cartTotalSection = document.getElementById('cart-total');
+             const emptyCartMessage = document.getElementById('empty-cart');
+             const addMoreButton = document.getElementById('add-more-items-btn');
 
-        if (this.textContent === 'ใส่ตะกร้า' && Object.keys(selectedMenuItems).length > 0) {
-        this.textContent = 'ยืนยันรายการ';
-        // ซ่อนปุ่มเพิ่ม/ลด/ลบ (และ textarea)
-        cartItemsContainer.querySelectorAll('.cart-item').forEach(item => {
-            const quantityControls = item.querySelector('.quantity-controls');
-            const removeButton = item.querySelector('.remove-btn');
-            const noteInput = item.querySelector('.special-note-cart');
-            if (quantityControls) quantityControls.style.display = 'none';
-            if (removeButton) removeButton.style.display = 'none';
-            if (noteInput) noteInput.style.display = 'none';
-        });
+          if (this.textContent === 'ใส่ตะกร้า' && Object.keys(selectedMenuItems).length > 0) {
+               this.textContent = 'ยืนยันรายการ';
+                 // ซ่อนปุ่มเพิ่ม/ลด/ลบ (และ textarea)
+              cartItemsContainer.querySelectorAll('.cart-item').forEach(item => {
+                const quantityControls = item.querySelector('.quantity-controls');
+                const removeButton = item.querySelector('.remove-btn');
+                const noteInput = item.querySelector('.special-note-cart');
+                if (quantityControls) quantityControls.style.display = 'none';
+                if (removeButton) removeButton.style.display = 'none';
+                if (noteInput) noteInput.style.display = 'none';
+           });
 
         // แสดงปุ่ม "+ เพิ่มรายการ"
         if (!addMoreButton) {
@@ -285,7 +274,7 @@
         } else if (addMoreButton.style.display === 'none') {
             addMoreButton.style.display = 'block';
         }
-     } else if (this.textContent === 'ยืนยันรายการ') {
+      } else if (this.textContent === 'ยืนยันรายการ') {
         // เตรียมข้อมูลสำหรับส่งไปยัง backend
         const tableStatusElement = document.getElementById('table-status');
         const tableNumberText = tableStatusElement.textContent;
@@ -366,19 +355,19 @@
                 console.error('Fetch error:', error);
                 alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
             });
-        }
-    }
-});
+          }
+       }
+    });
 
              // ฟังก์ชันสำหรับแสดงหน้าติดตามสถานะคำสั่งซื้อ
              function showOrderStatus(tableNumber, orderID) {
-            // สร้างเวลาปัจจุบัน
+             // สร้างเวลาปัจจุบัน
                 const now = new Date();
                 const hours = String(now.getHours()).padStart(2, '0');
                 const minutes = String(now.getMinutes()).padStart(2, '0');
                 const currentTime = `${hours}:${minutes}`;
     
-                // ล้างเนื้อหาในตะกร้า
+               // ล้างเนื้อหาในตะกร้า
                 const cartBox = document.querySelector('.cart-box');
                 const cartItems = document.getElementById('cart-items');
                 const emptyCart = document.getElementById('empty-cart');
@@ -386,17 +375,17 @@
                 const submitButton = document.getElementById('submit-order');
                 const addMoreButton = document.getElementById('add-more-items-btn');
     
-              // ซ่อนส่วนประกอบเดิมของตะกร้า
-               cartItems.style.display = 'none';
-               emptyCart.style.display = 'none';
-               cartTotal.style.display = 'none';
-               submitButton.style.display = 'none';
-               if (addMoreButton) {
-                addMoreButton.style.display = 'none';
-             }
+                // ซ่อนส่วนประกอบเดิมของตะกร้า
+                cartItems.style.display = 'none';
+                emptyCart.style.display = 'none';
+                cartTotal.style.display = 'none';
+                submitButton.style.display = 'none';
+                if (addMoreButton) {
+                  addMoreButton.style.display = 'none';
+              }
     
-               // สร้าง HTML สำหรับแสดงหน้าติดตามสถานะ
-           const statusHTML = `
+        // สร้าง HTML สำหรับแสดงหน้าติดตามสถานะ
+        const statusHTML = `
               <div class="order-status-details">
                  <div class="order-info">
                    <h3>ติดตามสถานะคำสั่งซื้อของคุณ</h3>
@@ -436,33 +425,34 @@
                 </div>
             </div>
         </div>
-        <button id="order-new-btn" class="add-to-cart-btn">สั่งเมนูใหม่</button>
+
+          <button id="order-new-btn" class="add-to-cart-btn">สั่งเมนูใหม่</button>
      </div>
   `;
     
-              // แทรก HTML ลงในตะกร้า
-             const statusTrackingDiv = document.createElement('div');
-             statusTrackingDiv.id = 'status-tracking-container';
-             statusTrackingDiv.innerHTML = statusHTML;
-             cartBox.appendChild(statusTrackingDiv);
+               // แทรก HTML ลงในตะกร้า
+         const statusTrackingDiv = document.createElement('div');
+         statusTrackingDiv.id = 'status-tracking-container';
+         statusTrackingDiv.innerHTML = statusHTML;
+         cartBox.appendChild(statusTrackingDiv);
     
-               // เพิ่ม Event Listener สำหรับปุ่ม "สั่งเมนูใหม่"
-            document.getElementById('order-new-btn').addEventListener('click', function() {
-             window.location.href = 'home_customer.php';
+        // เพิ่ม Event Listener สำหรับปุ่ม "สั่งเมนูใหม่"
+         document.getElementById('order-new-btn').addEventListener('click', function() {
+            window.location.href = 'home_customer.php';
         });
     
-            // ล้างข้อมูลเมนูที่เลือก
-            selectedMenuItems = {};
+       // ล้างข้อมูลเมนูที่เลือก
+         selectedMenuItems = {};
     
-         // รีเซ็ตปุ่ม "เลือก" ในเมนูทั้งหมด
-          document.querySelectorAll('.select-btn').forEach(btn => {
-               btn.textContent = 'เลือก';
-               btn.disabled = false;
-        });
-     }
+    // รีเซ็ตปุ่ม "เลือก" ในเมนูทั้งหมด
+      document.querySelectorAll('.select-btn').forEach(btn => {
+        btn.textContent = 'เลือก';
+        btn.disabled = false;
+     });
+   }
 
         // เพิ่ม event delegation สำหรับปุ่มเพิ่ม/ลดจำนวน และลบรายการ (ปรับให้คงค่าหมายเหตุ)
-        document.addEventListener('click', function(event) {
+           document.addEventListener('click', function(event) {
             const target = event.target;
             if (target.classList.contains('increase-btn') || target.classList.contains('decrease-btn')) {
                 const cartItem = target.closest('.cart-item');
