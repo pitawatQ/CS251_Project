@@ -16,6 +16,11 @@ $stmt = $conn->prepare("UPDATE Attendance
 $stmt->bind_param("i", $employeeID);
 $stmt->execute();
 
-header("Location: ../worktime_log.php");
+$redirect = isset($_POST['redirect']) && $_POST['redirect'] ? $_POST['redirect'] : '../worktime_log.php';
+if (strpos($redirect, '/') !== 0 && strpos($redirect, 'http') !== 0) {
+    $redirect = '../' . $redirect;
+}
+header("Location: $redirect");
 exit();
+
 ?>
