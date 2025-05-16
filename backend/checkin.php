@@ -22,11 +22,6 @@ if ($result->num_rows === 0) {
     $insert->execute();
 }
 
-$redirect = isset($_POST['redirect']) && $_POST['redirect'] ? $_POST['redirect'] : '../worktime_log.php';
-if (strpos($redirect, '/') !== 0 && strpos($redirect, 'http') !== 0) {
-    $redirect = '../' . $redirect;
-}
-header("Location: $redirect");
+header("Location: ../worktime_log.php");
 exit();
-
 ?>

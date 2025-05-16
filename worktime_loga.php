@@ -76,12 +76,10 @@ $historyResult = $historyStmt->get_result();
             </button>
         <?php else: ?>
             <form method="POST" action="backend/<?= $isCheckedIn ? 'checkout.php' : 'checkin.php' ?>">
-                <input type="hidden" name="redirect" value="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                 <button class="check-in-button" type="submit" style="background-color: <?= $isCheckedIn ? '#e67e22' : '#28c95b' ?>;">
                     <?= $isCheckedIn ? 'ออกงาน' : 'เข้างาน' ?>
                 </button>
             </form>
-
         <?php endif; ?>
 
 

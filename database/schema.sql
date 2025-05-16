@@ -53,7 +53,7 @@ CREATE TABLE Orders (
 CREATE TABLE OrderDetail (
     OrderID INT(6),
     MenuID INT(3),
-    MenuQuantity INT(2),
+    MenuQuntity INT(2),
     UnitPrice DECIMAL(6,2),
     ItemNo INT(3),
     TotalPrice DECIMAL(6,2),

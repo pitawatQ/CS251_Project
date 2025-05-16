@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('Asia/Bangkok'); // หรือโซนเวลาที่ใช้จริง
 session_start();
 include 'backend/db_connect.php';
 include 'backend/auth.php';
@@ -120,78 +119,19 @@ $profile = $result->fetch_assoc();
             <h2>⏰ การเข้าออกงานพนักงาน</h2>
             <?php
             $attQuery = $conn->query("
-                SELECT e.FName, a.EmployeeID, a.ClockInTime, a.ClockOutTime
+                SELECT e.FName, a.ClockInTime, a.ClockOutTime
                 FROM Attendance a
-                LEFT JOIN Employee e ON e.EmployeeID = a.EmployeeID
-                WHERE DATE(a.WorkDate) = '$today'
-                ORDER BY a.ClockInTime ASC
+                JOIN Employee e ON e.EmployeeID = a.EmployeeID
+                WHERE a.WorkDate = '$today'
             ");
-            $found = false;
             while ($row = $attQuery->fetch_assoc()):
-                $found = true;
-                $clockin = $row['ClockInTime'] ?: '-';
-                $clockout = $row['ClockOutTime'] ?: '-';
-                $fname = $row['FName'] ?: "ID: ".$row['EmployeeID'];
-                $status = ($row['ClockOutTime'] && $row['ClockOutTime'] !== "00:00:00") ? 'ออกงานแล้ว' : 'กำลังทำงาน';
-                $statusClass = ($status === 'ออกงานแล้ว') ? 'off-work' : 'working';
+                $status = $row['ClockOutTime'] ? 'ออกงานแล้ว' : 'กำลังทำงาน';
+                $statusClass = $row['ClockOutTime'] ? 'off-work' : 'working';
             ?>
-                <p>
-                    <?= htmlspecialchars($fname) ?> - เข้า: <?= $clockin ?> / ออก: <?= $clockout ?>
-                    <span class="status <?= $statusClass ?>"><?= $status ?></span>
-                </p>
-            <?php endwhile;
-            if (!$found) {
-                echo "<p style='color:gray'>ยังไม่มีพนักงานเข้างานวันนี้</p>";
-            }
-            ?>
-
+                <p><?= $row['FName'] ?> - เข้า: <?= $row['ClockInTime'] ?> / ออก: <?= $row['ClockOutTime'] ?: '-' ?>
+                    <span class="status <?= $statusClass ?>"><?= $status ?></span></p>
+            <?php endwhile; ?>
         </div>
-            <div class="report-box">
-    <h2>🥦 วัตถุดิบที่ใช้วันนี้</h2>
-    <table style="width:100%">
-        <thead>
-            <tr>
-                <th style="text-align:left">วัตถุดิบ</th>
-                <th style="text-align:right">ใช้ไป (หน่วย)</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        // คิวรีหายอดใช้วัตถุดิบของวันนี้
-        $sql = "
-            SELECT s.IngredientName, SUM(iu.QuantityUsed * od.MenuQuantity) AS UsedQty, s.Unit
-            FROM Orders o
-            JOIN OrderDetail od ON o.OrderID = od.OrderID
-            JOIN IngredientUsage iu ON od.MenuID = iu.MenuID
-            JOIN Stock s ON iu.IngredientID = s.IngredientID
-            WHERE DATE(o.OrderTime) = ?
-              AND o.Status >= 3
-            GROUP BY s.IngredientName, s.Unit
-            ORDER BY UsedQty DESC
-        ";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $today);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $found = false;
-        while ($row = $result->fetch_assoc()):
-            if ($row['UsedQty'] > 0) {
-                $found = true;
-        ?>
-            <tr>
-                <td><?= htmlspecialchars($row['IngredientName']) ?></td>
-                <td style="text-align:right"><?= number_format($row['UsedQty'], 2) . ' ' . htmlspecialchars($row['Unit']) ?></td>
-            </tr>
-        <?php
-            }
-        endwhile;
-        if (!$found) {
-            echo "<tr><td colspan='2' style='color:gray'>- ไม่มีการใช้วัตถุดิบวันนี้ -</td></tr>";
-        }
-        ?>
-        </tbody>
-    </table>
-</div>
 
         <div class="report-box">
             <h2>📦 สถานะสต็อกสินค้า</h2>
