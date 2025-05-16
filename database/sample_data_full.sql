@@ -85,8 +85,8 @@ INSERT INTO Payment (OrderID, PaymentMethod, TotalPaid, PaymentDate, InvoiceNo, 
 
 -- Promotion
 INSERT INTO Promotion VALUES
-(500001, 'โปรต้มยำ+ชาเย็น', 95.00, 'ต้มยำกุ้ง+ชาเย็น ราคาพิเศษ', '/CS251_projectimg/promotion/promo_tomyumtea.png'),
-(500002, 'ข้าวผัดกุ้ง+บัวลอย', 99.00, 'ข้าวผัดกุ้ง+บัวลอยไข่หวาน', '/CS251_projectimg/promotion/promo_friedricebualoy.png');
+(500001, 'โปรต้มยำ+ชาเย็น', 95.00, 'ต้มยำกุ้ง+ชาเย็น ราคาพิเศษ', '/CS251_project/img/promotion/promo_tomyumtea.png'),
+(500002, 'ข้าวผัดกุ้ง+บัวลอย', 99.00, 'ข้าวผัดกุ้ง+บัวลอยไข่หวาน', '/CS251_project/img/promotion/promo_friedricebualoy.png');
 
 -- PromotionMenu
 INSERT INTO PromotionMenu VALUES
