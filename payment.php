@@ -25,7 +25,7 @@ if (!$tableNo) {
 
 // เตรียมคำสั่ง SQL ดึงรายการอาหารทั้งหมดของโต๊ะนั้น (หลายออเดอร์รวมกัน)
 $sql = "
-SELECT m.Name AS MenuName, od.MenuQuntity AS Quantity, od.UnitPrice, od.TotalPrice, o.OrderID
+SELECT m.Name AS MenuName, od.MenuQuantity AS Quantity, od.UnitPrice, od.TotalPrice, o.OrderID
 FROM Orders o
 JOIN OrderDetail od ON o.OrderID = od.OrderID
 JOIN Menu m ON od.MenuID = m.MenuID
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_method'])) {
     }
     $stmt->close();
 
-    $lastInvoiceNo = null;
+      $lPaymentID = null;
 
     foreach ($orderIDs as $orderID) {
         $stmt = $conn->prepare("UPDATE Orders SET Status = 6 WHERE OrderID = ?");
@@ -89,14 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_method'])) {
         $stmt->close();
 
         $invoiceNo = rand(700000, 799999); // สร้างหมายเลขใบเสร็จใหม่
-        $lastInvoiceNo = $invoiceNo; // เก็บไว้สำหรับ redirect ภายหลัง
-
         $discount = 0;
 
         $stmt = $conn->prepare("INSERT INTO Payment (OrderID, PaymentMethod, TotalPaid, PaymentDate, InvoiceNo, TotalDiscount, EmployeeID, Vat)
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isdsiidi", $orderID, $method, $grandTotal, $now, $invoiceNo, $discount, $employeeID, $vat);
         $stmt->execute();
+        $lPaymentID = $conn->insert_id; // <-- Get the last inserted PaymentID
         $stmt->close();
     }
 
@@ -107,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_method'])) {
     $updateTable->close();
 
     // ✅ redirect ไปยังใบเสร็จ
-    header("Location: backend/receipt.php?ref=$lastInvoiceNo");
+    header("Location: backend/receipt.php?ref=$lPaymentID");
     exit();
 
 }

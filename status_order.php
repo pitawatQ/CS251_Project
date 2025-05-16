@@ -26,10 +26,18 @@ $profile = $result->fetch_assoc();
 
 // Filter เงื่อนไข
 $filter = $_GET['filter'] ?? '';
-$where = '';
-if (in_array($filter, ['0', '2', '3', '4', '5'])) {
-    $where = "WHERE o.Status = $filter";
+if ($filter === '' || !in_array($filter, ['0', '2', '3', '4', '5', '6'])) {
+    // ไม่เลือก filter
+    $statusCondition = "o.Status IN (2,3,4,5,0,6)";
+} elseif ($filter === '5') {
+    // ถ้าเลือก 5 ให้ >= 5
+    $statusCondition = "o.Status >= 5";
+} else {
+    // กรณีอื่น ๆ เลือก status เดียว
+    $statusCondition = "o.Status = $filter";
 }
+
+
 
 // Query รายการอาหาร
 $orderQuery = "SELECT o.OrderID, o.TableNo, o.OrderTime, o.Status,
@@ -38,10 +46,10 @@ $orderQuery = "SELECT o.OrderID, o.TableNo, o.OrderTime, o.Status,
                FROM Orders o
                JOIN OrderDetail od ON o.OrderID = od.OrderID
                JOIN Menu m ON od.MenuID = m.MenuID
-               WHERE o.Status IN (2, 3, 4, 5, 0)
-               $where
+               WHERE $statusCondition
                GROUP BY o.OrderID
                ORDER BY o.OrderTime DESC";
+
 $orderResult = $conn->query($orderQuery);
 ?>
 
@@ -105,6 +113,7 @@ $orderResult = $conn->query($orderQuery);
               4 => 'รอเสิร์ฟ',
               5 => 'เสิร์ฟแล้ว',
               0 => 'ยกเลิกแล้ว',
+              6 => 'จ่ายเงินแล้ว',
               default => 'ไม่ทราบ'
             };
 
@@ -113,7 +122,9 @@ $orderResult = $conn->query($orderQuery);
               3 => 'cooking',
               4 => 'serving',
               5 => 'done',
+              6 => 'paid',
               0 => 'canceled',
+
               default => ''
             };
 

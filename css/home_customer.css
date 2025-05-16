@@ -173,11 +173,47 @@
 
 .category-bar {
     display: flex;
-    flex-wrap: wrap;
     gap: 16px;
-    padding: 10px 0;
+    margin-bottom: 12px;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f3f3f3;
+    border-radius: 16px;
+    border: none;
+    padding: 12px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    min-width: 80px;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(60,60,60,0.04);
+}
+.category-btn .cat-img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+}
+.category-btn span {
+    font-size: 1em;
+    color: #333;
+    font-weight: 500;
+}
+.category-btn.active {
+    background: #29cc8b;
+    color: white;
+    box-shadow: 0 3px 10px rgba(60,60,60,0.10);
+}
+.category-btn.active span {
+    color: #fff;
+}
+.category-btn:hover {
+    background: #d5f5e3;
+}
+
 
 .menu-category-item {
     display: flex;
@@ -573,4 +609,13 @@
 /* Ensure there's enough padding at the bottom of the cart box */
 .cart-box {
   padding-bottom: 20px;
+}
+.status-item-wrapper.active {
+    background-color: #3BC784 !important;
+    border-color: #28c95b !important;
+    color: white;
+}
+.status-item-wrapper.active .status-description,
+.status-item-wrapper.active strong {
+    color: white;
 }

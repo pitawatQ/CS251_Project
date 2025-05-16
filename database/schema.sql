@@ -1,4 +1,3 @@
-
 CREATE DATABASE IF NOT EXISTS restaurant_db;
 USE restaurant_db;
 
@@ -125,16 +124,6 @@ CREATE TABLE PromotionMenu (
     MenuID INT(3),
     PRIMARY KEY (PromotionID, MenuID),
     FOREIGN KEY (PromotionID) REFERENCES Promotion(PromotionID),
-    FOREIGN KEY (MenuID) REFERENCES Menu(MenuID)
-);
-
--- Table: Nutrition
-CREATE TABLE Nutrition (
-    MenuID INT(3),
-    Nutrition VARCHAR(50),
-    Quantity DECIMAL(6,2),
-    Unit VARCHAR(20),
-    PRIMARY KEY (MenuID, Nutrition),
     FOREIGN KEY (MenuID) REFERENCES Menu(MenuID)
 );
 

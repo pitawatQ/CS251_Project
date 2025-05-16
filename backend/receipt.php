@@ -29,7 +29,7 @@ if (!$payment) {
 
 // ดึงรายการอาหาร
 $stmt2 = $conn->prepare("
-    SELECT m.Name AS MenuName, od.MenuQuntity AS Quantity, od.UnitPrice
+    SELECT m.Name AS MenuName, od.MenuQuantity AS Quantity, od.UnitPrice
     FROM orderdetail od
     JOIN menu m ON od.MenuID = m.MenuID
     WHERE od.OrderID = ?

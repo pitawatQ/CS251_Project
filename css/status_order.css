@@ -157,6 +157,9 @@ body {
 .status.canceled {
   background-color: #929292; /* แดง */
 }
+.status.paid {
+  background-color: #c5b30b; /* เขียว */
+}
 
 
 td select {

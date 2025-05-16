@@ -1,3 +1,39 @@
+<?php
+include 'backend/db_connect.php';
+$sql_menu = "
+SELECT m.MenuID, m.Name as MenuName, m.Price, m.Picture, c.CName as CategoryName, c.CategoryID
+FROM Menu m
+JOIN Category c ON m.CategoryID = c.CategoryID
+WHERE m.Status = 1
+";
+$result_menu = mysqli_query($conn, $sql_menu);
+$sql_table = "SELECT TableNo FROM TableList WHERE Status = 0"; // 0 = ว่าง, 1 = ไม่ว่าง
+$result_table = mysqli_query($conn, $sql_table);
+// ดึงเฉพาะ Category ที่มีเมนูอย่างน้อย 1 เมนู (Status=1)
+$sql_category = "
+    SELECT c.CategoryID, c.CName, COUNT(m.MenuID) as cnt
+    FROM Category c
+    JOIN Menu m ON c.CategoryID = m.CategoryID AND m.Status = 1
+    GROUP BY c.CategoryID, c.CName
+    HAVING cnt > 0
+    ORDER BY c.CategoryID
+";
+$result_category = mysqli_query($conn, $sql_category);
+
+// รับ category ที่เลือก
+$selected_cat = isset($_GET['cat']) ? intval($_GET['cat']) : 0;
+$where_menu = ($selected_cat > 0) ? "AND m.CategoryID = $selected_cat" : '';
+
+// ดึงเมนูเฉพาะตามหมวด
+$sql_menu = "
+    SELECT m.MenuID, m.Name as MenuName, m.Price, m.Picture, c.CName as CategoryName, c.CategoryID
+    FROM Menu m
+    JOIN Category c ON m.CategoryID = c.CategoryID
+    WHERE m.Status = 1 $where_menu
+";
+$result_menu = mysqli_query($conn, $sql_menu);
+
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -25,11 +61,9 @@
                 <div class="table-dropdown">
                     <button id="table-btn">เลือกหมายเลขโต๊ะ ▼</button>
                     <div class="dropdown-content">
-                        <a href="#" class="table-select">โต๊ะ 1</a>
-                        <a href="#" class="table-select">โต๊ะ 2</a>
-                        <a href="#" class="table-select">โต๊ะ 3</a>
-                        <a href="#" class="table-select">โต๊ะ 4</a>
-                        <a href="#" class="table-select">โต๊ะ 5</a>
+                        <?php while ($row = mysqli_fetch_assoc($result_table)): ?>
+                            <a href="#" class="table-select">โต๊ะ <?= $row['TableNo'] ?></a>
+                        <?php endwhile; ?>
                     </div>
                 </div>
             </div>
@@ -43,52 +77,36 @@
                     <img src="pics/flowers.png" class="menu-icon" alt="menu icon">
                     <h2>เมนู | หมวดหมู่</h2>
                 </div>
-                <div class="category-bar">
-                    <a href="porridge_menu.php" class="menu-category-item" data-category="ข้าวต้ม">
-                        <img src="pics/porridge.png" alt="ข้าวต้ม">
-                        <div class="label">ข้าวต้ม</div>
-                    </a>
-                    <a href="single_menu.php" class="menu-category-item" data-category="อาหารจานเดียว">
-                        <img src="pics/single.png" alt="อาหารจานเดียว">
-                        <div class="label">อาหารจานเดียว</div>
-                    </a>
-                    <a href="tomyum_menu.php" class="menu-category-item" data-category="ต้มยำ">
-                        <img src="pics/tomyum.png" alt="ต้มยำ">
-                        <div class="label">ต้มยำ</div>
-                    </a>
-                    <a href="friedfood_menu.php" class="menu-category-item" data-category="ของทอด">
-                        <img src="pics/friedfood.png" alt="ของทอด">
-                        <div class="label">ของทอด</div>
-                    </a>
-                    <a href="bev_menu.php" class="menu-category-item" data-category="เครื่องดื่ม">
-                        <img src="pics/bev.png" alt="เครื่องดื่ม">
-                        <div class="label">เครื่องดื่ม</div>
-                    </a>
-                </div>
+                    <div class="category-bar">
+                        <!-- ปุ่ม "ทั้งหมด" -->
+                        <a href="home_customer.php" class="category-btn<?= $selected_cat == 0 ? ' active' : '' ?>">
+                            <img src="pics/set.png" class="cat-img"><span>ทั้งหมด</span>
+                        </a>
+                        <?php while ($cat = mysqli_fetch_assoc($result_category)): ?>
+                            <a href="?cat=<?= $cat['CategoryID'] ?>" 
+                            class="category-btn<?= $selected_cat == $cat['CategoryID'] ? ' active' : '' ?>">
+                                <img src="pics/set.png" class="cat-img">
+                                <span><?= htmlspecialchars($cat['CName']) ?></span>
+                            </a>
+                        <?php endwhile; ?>
+                    </div>
                 <div class="gradient-line"></div>
                 <div class="tags">
                     <a href="home_customer.php" class="tag popular">⭐ เมนูยอดนิยม</a>
                     <a href="promotionpage.php" class="tag promo">⭐ โปรโมชั่น </a>
                 </div>
+                <!-- ดึงเมนูจากฐานข้อมูล -->
                 <div class="menu-grid">
-                    <div class="menu-card" data-item-id="1" data-category="ข้าวต้ม">
-                        <img src="img/menu/porkporridge.jpg" class="menu-img" data-img="img/menu/porkporridge.jpg">
-                        <div class="menu-name">ข้าวต้มหมู</div>
-                        <div class="menu-price">฿ 50</div>
-                        <button class="select-btn">เลือก</button>
-                    </div>
-                    <div class="menu-card" data-item-id="2" data-category="อาหารจานเดียว">
-                        <img src="img/menu/firedricecrab.jpg" class="menu-img" data-img="img/menu/firedricecrab.jpg">
-                        <div class="menu-name">ข้าวผัดปู</div>
-                        <div class="menu-price">฿ 80</div>
-                        <button class="select-btn">เลือก</button>
-                    </div>
-                    <div class="menu-card" data-item-id="3" data-category="ต้มยำ">
-                        <img src="img/menu/tomyumkung.jpg" class="menu-img" data-img="img/menu/tomyumkung.jpg">
-                        <div class="menu-name">ต้มยำกุ้ง</div>
-                        <div class="menu-price">฿ 120</div>
-                        <button class="select-btn">เลือก</button>
-                    </div>
+                    <?php while ($row = mysqli_fetch_assoc($result_menu)): ?>
+                        <div class="menu-card"
+                            data-item-id="<?= $row['MenuID'] ?>"
+                            data-category="<?= $row['CategoryID'] ?>">
+                            <img src="<?= $row['Picture'] ?>" class="menu-img" data-img="<?= $row['Picture'] ?>">
+                            <div class="menu-name"><?= htmlspecialchars($row['MenuName']) ?></div>
+                            <div class="menu-price">฿ <?= number_format($row['Price'], 2) ?></div>
+                            <button class="select-btn">เลือก</button>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
 
@@ -110,7 +128,15 @@
     </div>
 
     <script>
-        // ฟังก์ชันคำนวณราคารวม
+        // === NEW: โหลดหน้า ถ้ามี order เดิมใน localStorage ให้โชว์ติดตามสถานะเลย
+        window.addEventListener('DOMContentLoaded', function() {
+            const orderID = localStorage.getItem('orderID');
+            const tableNo = localStorage.getItem('tableNo');
+            if (orderID && tableNo) {
+                showOrderStatus(tableNo, orderID);
+            }
+        });
+
         function calculateTotal() {
             let total = 0;
             document.querySelectorAll('.cart-item').forEach(item => {
@@ -122,9 +148,8 @@
             return total;
         }
 
-        let selectedMenuItems = {}; // Object เก็บรายการเมนูที่เลือกไว้ { itemName: { price: number, img: string, quantity: number, note: string } }
+        let selectedMenuItems = {};
 
-        // ฟังก์ชันอัปเดตการแสดงผลตะกร้า
         function updateCartDisplay() {
             const cartItemsContainer = document.getElementById('cart-items');
             const emptyCartMessage = document.getElementById('empty-cart');
@@ -194,7 +219,6 @@
                 }
             }
 
-            // อัปเดตสถานะปุ่ม "เลือก" ในเมนู
             document.querySelectorAll('.select-btn').forEach(btn => {
                 const menuItem = btn.closest('.menu-card');
                 const itemName = menuItem.querySelector('.menu-name').textContent;
@@ -208,7 +232,6 @@
             });
         }
 
-        // เพิ่มเมนูลงตะกร้า (เมื่อคลิก "เลือก")
         document.querySelectorAll('.select-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const menuItem = this.closest('.menu-card');
@@ -224,14 +247,13 @@
                         price: itemPrice,
                         img: itemImg,
                         quantity: 1,
-                        note: '' // เริ่มต้นด้วยโน้ตว่าง
+                        note: ''
                     };
                 }
                 updateCartDisplay();
             });
         });
 
-        // การทำงานเมื่อมีการเปลี่ยนแปลงใน textarea หมายเหตุในตะกร้า
         document.addEventListener('change', function(event) {
             if (event.target.classList.contains('special-note-cart')) {
                 const cartItem = event.target.closest('.cart-item');
@@ -242,226 +264,258 @@
             }
         });
 
-        // การทำงานเมื่อคลิกปุ่ม "ใส่ตะกร้า" (เปลี่ยนเป็น "ยืนยันรายการ" และส่งออร์เดอร์)
-          document.getElementById('submit-order').addEventListener('click', function() {
+        document.getElementById('submit-order').addEventListener('click', function() {
             const cartItemsContainer = document.getElementById('cart-items');
             const cartTotalSection = document.getElementById('cart-total');
             const emptyCartMessage = document.getElementById('empty-cart');
             const addMoreButton = document.getElementById('add-more-items-btn');
 
-        if (this.textContent === 'ใส่ตะกร้า' && Object.keys(selectedMenuItems).length > 0) {
-        this.textContent = 'ยืนยันรายการ';
-        // ซ่อนปุ่มเพิ่ม/ลด/ลบ (และ textarea)
-        cartItemsContainer.querySelectorAll('.cart-item').forEach(item => {
-            const quantityControls = item.querySelector('.quantity-controls');
-            const removeButton = item.querySelector('.remove-btn');
-            const noteInput = item.querySelector('.special-note-cart');
-            if (quantityControls) quantityControls.style.display = 'none';
-            if (removeButton) removeButton.style.display = 'none';
-            if (noteInput) noteInput.style.display = 'none';
-        });
-
-        // แสดงปุ่ม "+ เพิ่มรายการ"
-        if (!addMoreButton) {
-            const newAddMoreButton = document.createElement('button');
-            newAddMoreButton.id = 'add-more-items-btn';
-            newAddMoreButton.classList.add('add-more-items-btn');
-            newAddMoreButton.textContent = '+ เพิ่มรายการ';
-            document.querySelector('.cart-box').appendChild(newAddMoreButton);
-
-            newAddMoreButton.addEventListener('click', function() {
-                // แสดงปุ่มควบคุมในตะกร้าอีกครั้ง (และ textarea)
+            if (this.textContent === 'ใส่ตะกร้า' && Object.keys(selectedMenuItems).length > 0) {
+                this.textContent = 'ยืนยันรายการ';
                 cartItemsContainer.querySelectorAll('.cart-item').forEach(item => {
                     const quantityControls = item.querySelector('.quantity-controls');
                     const removeButton = item.querySelector('.remove-btn');
                     const noteInput = item.querySelector('.special-note-cart');
-                    if (quantityControls) quantityControls.style.display = 'flex';
-                    if (removeButton) removeButton.style.display = 'block';
-                    if (noteInput) noteInput.style.display = 'block';
+                    if (quantityControls) quantityControls.style.display = 'none';
+                    if (removeButton) removeButton.style.display = 'none';
+                    if (noteInput) noteInput.style.display = 'none';
                 });
-                document.getElementById('submit-order').textContent = 'ใส่ตะกร้า';
-                newAddMoreButton.remove();
-            });
-        } else if (addMoreButton.style.display === 'none') {
-            addMoreButton.style.display = 'block';
-        }
-     } else if (this.textContent === 'ยืนยันรายการ') {
-        // เตรียมข้อมูลสำหรับส่งไปยัง backend
-        const tableStatusElement = document.getElementById('table-status');
-        const tableNumberText = tableStatusElement.textContent;
-        let tableNumber = null;
-        if (tableNumberText.startsWith('โต๊ะ ')) {
-            tableNumber = tableNumberText.split(' ')[1];
-        } else {
-            alert('กรุณาเลือกหมายเลขโต๊ะก่อนสั่งอาหาร');
-            return;
-        }
 
-        const orderDetails = [];
-        for (const itemName in selectedMenuItems) {
-            if (selectedMenuItems[itemName].quantity > 0) {
-                orderDetails.push({
-                    name: itemName,
-                    quantity: selectedMenuItems[itemName].quantity,
-                    note: selectedMenuItems[itemName].note || ''
-                });
-            }
-        }
+                if (!addMoreButton) {
+                    const newAddMoreButton = document.createElement('button');
+                    newAddMoreButton.id = 'add-more-items-btn';
+                    newAddMoreButton.classList.add('add-more-items-btn');
+                    newAddMoreButton.textContent = '+ เพิ่มรายการ';
+                    document.querySelector('.cart-box').appendChild(newAddMoreButton);
 
-        if (orderDetails.length === 0) {
-            alert('กรุณาเลือกเมนูอาหารก่อนสั่ง');
-            return;
-        }
-
-        const total = calculateTotal();
-        const confirmOrder = confirm(`ยืนยันการสั่งอาหารที่ ${tableNumberText}\nรายการ: ${orderDetails.map(item => `${item.name} x${item.quantity}`).join(', ')}\nรวมทั้งสิ้น: ฿ ${total}`);
-
-        if (confirmOrder) {
-            // สร้าง FormData object
-            const formData = new FormData();
-            formData.append('table_no', tableNumber);
-            formData.append('orderDetails', JSON.stringify({ orderDetails: orderDetails }));
-            
-            // แสดง Loading message
-            const loadingMessage = document.createElement('div');
-            loadingMessage.id = 'loading-message';
-            loadingMessage.style.position = 'fixed';
-            loadingMessage.style.top = '50%';
-            loadingMessage.style.left = '50%';
-            loadingMessage.style.transform = 'translate(-50%, -50%)';
-            loadingMessage.style.padding = '20px';
-            loadingMessage.style.background = 'rgba(0, 0, 0, 0.7)';
-            loadingMessage.style.color = 'white';
-            loadingMessage.style.borderRadius = '5px';
-            loadingMessage.style.zIndex = '1000';
-            loadingMessage.textContent = 'กำลังดำเนินการ...';
-            document.body.appendChild(loadingMessage);
-
-            // ส่งข้อมูลไปยัง backend
-            fetch('backend/insert_order.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json()) // เปลี่ยนจาก text เป็น json
-            .then(data => {
-                // ลบ Loading message
-                document.body.removeChild(document.getElementById('loading-message'));
-                
-                console.log("Server response:", data); // เพิ่ม log เพื่อตรวจสอบการตอบกลับ
-                
-                if (data.status === 'success') {
-                    // แสดงหน้าติดตามสถานะอาการแทนตะกร้า โดยส่ง OrderID ที่ได้จาก server
-                    showOrderStatus(tableNumber, data.orderID);
+                    newAddMoreButton.addEventListener('click', function() {
+                        cartItemsContainer.querySelectorAll('.cart-item').forEach(item => {
+                            const quantityControls = item.querySelector('.quantity-controls');
+                            const removeButton = item.querySelector('.remove-btn');
+                            const noteInput = item.querySelector('.special-note-cart');
+                            if (quantityControls) quantityControls.style.display = 'flex';
+                            if (removeButton) removeButton.style.display = 'block';
+                            if (noteInput) noteInput.style.display = 'block';
+                        });
+                        document.getElementById('submit-order').textContent = 'ใส่ตะกร้า';
+                        newAddMoreButton.remove();
+                    });
+                } else if (addMoreButton.style.display === 'none') {
+                    addMoreButton.style.display = 'block';
+                }
+            } else if (this.textContent === 'ยืนยันรายการ') {
+                const tableStatusElement = document.getElementById('table-status');
+                const tableNumberText = tableStatusElement.textContent;
+                let tableNumber = null;
+                if (tableNumberText.startsWith('โต๊ะ ')) {
+                    tableNumber = tableNumberText.split(' ')[1];
                 } else {
-                    alert('เกิดข้อผิดพลาดในการสั่งอาหาร: ' + data.message);
-                    console.error('Error inserting order:', data.message);
+                    alert('กรุณาเลือกหมายเลขโต๊ะก่อนสั่งอาหาร');
+                    return;
                 }
-            })
-            .catch(error => {
-                // ลบ Loading message
-                if (document.getElementById('loading-message')) {
-                    document.body.removeChild(document.getElementById('loading-message'));
+
+                const orderDetails = [];
+                for (const itemName in selectedMenuItems) {
+                    if (selectedMenuItems[itemName].quantity > 0) {
+                        orderDetails.push({
+                            name: itemName,
+                            quantity: selectedMenuItems[itemName].quantity,
+                            note: selectedMenuItems[itemName].note || ''
+                        });
+                    }
                 }
-                
-                console.error('Fetch error:', error);
-                alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+
+                if (orderDetails.length === 0) {
+                    alert('กรุณาเลือกเมนูอาหารก่อนสั่ง');
+                    return;
+                }
+
+                const total = calculateTotal();
+                const confirmOrder = confirm(`ยืนยันการสั่งอาหารที่ ${tableNumberText}\nรายการ: ${orderDetails.map(item => `${item.name} x${item.quantity}`).join(', ')}\nรวมทั้งสิ้น: ฿ ${total}`);
+
+                if (confirmOrder) {
+                    const formData = new FormData();
+                    formData.append('table_no', tableNumber);
+                    formData.append('orderDetails', JSON.stringify({ orderDetails: orderDetails }));
+
+                    const loadingMessage = document.createElement('div');
+                    loadingMessage.id = 'loading-message';
+                    loadingMessage.style.position = 'fixed';
+                    loadingMessage.style.top = '50%';
+                    loadingMessage.style.left = '50%';
+                    loadingMessage.style.transform = 'translate(-50%, -50%)';
+                    loadingMessage.style.padding = '20px';
+                    loadingMessage.style.background = 'rgba(0, 0, 0, 0.7)';
+                    loadingMessage.style.color = 'white';
+                    loadingMessage.style.borderRadius = '5px';
+                    loadingMessage.style.zIndex = '1000';
+                    loadingMessage.textContent = 'กำลังดำเนินการ...';
+                    document.body.appendChild(loadingMessage);
+
+                    fetch('backend/insert_order.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.body.removeChild(document.getElementById('loading-message'));
+                        console.log("Server response:", data);
+
+                        if (data.status === 'success') {
+                            // === NEW: save order info in localStorage
+                            localStorage.setItem('orderID', data.orderID);
+                            localStorage.setItem('tableNo', tableNumber);
+
+                            showOrderStatus(tableNumber, data.orderID);
+                        } else {
+                            alert('เกิดข้อผิดพลาดในการสั่งอาหาร: ' + data.message);
+                            console.error('Error inserting order:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        if (document.getElementById('loading-message')) {
+                            document.body.removeChild(document.getElementById('loading-message'));
+                        }
+                        console.error('Fetch error:', error);
+                        alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                    });
+                }
+            }
+        });
+
+        function showOrderStatus(tableNumber, orderID) {
+            // ... code เดิมสร้าง status html ...
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+            const cartBox = document.querySelector('.cart-box');
+            const cartItems = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartTotal = document.getElementById('cart-total');
+            const submitButton = document.getElementById('submit-order');
+            const addMoreButton = document.getElementById('add-more-items-btn');
+
+            cartItems.style.display = 'none';
+            emptyCart.style.display = 'none';
+            cartTotal.style.display = 'none';
+            submitButton.style.display = 'none';
+            if (addMoreButton) addMoreButton.style.display = 'none';
+
+            const statusHTML = `
+                <div class="order-status-details">
+                   <div class="order-info">
+                     <h3>ติดตามสถานะคำสั่งซื้อของคุณ</h3>
+                     <p>หมายเลขคำสั่งซื้อ</p>
+                     <div class="order-id-box">${orderID}</div>
+                     <p>เวลาที่สั่ง: ${currentTime} น. | โต๊ะ: ${tableNumber}</p>
+                </div>
+
+                    <div class="status-tracking">
+                        <div class="status-item-wrapper received">
+                            <div class="status-item">
+                                <img src="pics/od1.png" class="status-icon" alt="รับออเดอร์แล้ว">
+                                <div>
+                                    <strong>รับออร์เดอร์แล้ว</strong>
+                                    <p class="status-description">ระบบได้รับคำสั่งซื้อของคุณแล้ว</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-item-wrapper cooking">
+                            <div class="status-item">
+                                <img src="pics/od2.png" class="status-icon" alt="กำลังปรุงอาหาร">
+                                <div>
+                                    <strong>กำลังปรุงอาหาร</strong>
+                                    <p class="status-description">เชฟกำลังปรุงอาหารของคุณ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-item-wrapper serving">
+                            <div class="status-item">
+                                <img src="pics/od3.png" class="status-icon" alt="พร้อมเสิร์ฟ">
+                                <div>
+                                    <strong>พร้อมเสิร์ฟ</strong>
+                                    <p class="status-description">อาหารกำลังนำไปเสิร์ฟที่โต๊ะแล้ว</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="order-new-btn" class="add-to-cart-btn">สั่งเมนูใหม่</button>
+             </div>
+            `;
+            const statusTrackingDiv = document.createElement('div');
+            statusTrackingDiv.id = 'status-tracking-container';
+            statusTrackingDiv.innerHTML = statusHTML;
+            cartBox.appendChild(statusTrackingDiv);
+
+            // === NEW: clear localStorage when start new order
+            document.getElementById('order-new-btn').addEventListener('click', function() {
+                localStorage.removeItem('orderID');
+                localStorage.removeItem('tableNo');
+                window.location.href = 'home_customer.php';
+            });
+
+            selectedMenuItems = {};
+            document.querySelectorAll('.select-btn').forEach(btn => {
+                btn.textContent = 'เลือก';
+                btn.disabled = false;
+            });
+
+            pollOrderStatus(orderID);
+        }
+
+        function updateStatusTracking(status) {
+            const wrappers = document.querySelectorAll('.status-item-wrapper');
+            wrappers.forEach((w, i) => {
+                if (i <= status - 2) {
+                    w.classList.add('active');
+                } else {
+                    w.classList.remove('active');
+                }
             });
         }
-    }
-});
+        function pollOrderStatus(orderID) {
+            setInterval(() => {
+                fetch('backend/get_order_status.php?order_id=' + orderID)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (typeof data.status !== "undefined") {
+                            updateStatusTracking(data.status);
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Error polling order status", err);
+                    });
+            }, 5000);
+        }
 
-             // ฟังก์ชันสำหรับแสดงหน้าติดตามสถานะคำสั่งซื้อ
-             function showOrderStatus(tableNumber, orderID) {
-            // สร้างเวลาปัจจุบัน
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const currentTime = `${hours}:${minutes}`;
-    
-                // ล้างเนื้อหาในตะกร้า
-                const cartBox = document.querySelector('.cart-box');
-                const cartItems = document.getElementById('cart-items');
-                const emptyCart = document.getElementById('empty-cart');
-                const cartTotal = document.getElementById('cart-total');
-                const submitButton = document.getElementById('submit-order');
-                const addMoreButton = document.getElementById('add-more-items-btn');
-    
-              // ซ่อนส่วนประกอบเดิมของตะกร้า
-               cartItems.style.display = 'none';
-               emptyCart.style.display = 'none';
-               cartTotal.style.display = 'none';
-               submitButton.style.display = 'none';
-               if (addMoreButton) {
-                addMoreButton.style.display = 'none';
-             }
-    
-               // สร้าง HTML สำหรับแสดงหน้าติดตามสถานะ
-           const statusHTML = `
-              <div class="order-status-details">
-                 <div class="order-info">
-                   <h3>ติดตามสถานะคำสั่งซื้อของคุณ</h3>
-                   <p>หมายเลขคำสั่งซื้อ</p>
-                   <div class="order-id-box">${orderID}</div>
-                   <p>เวลาที่สั่ง: ${currentTime} น. | โต๊ะ: ${tableNumber}</p>
-              </div>
-
-              <div class="status-tracking">
-                 <div class="status-item-wrapper received">
-                    <div class="status-item">
-                       <img src="pics/od1.png" class="status-icon" alt="รับออเดอร์แล้ว">
-                    <div>
-                        <strong>รับออร์เดอร์แล้ว</strong>
-                        <p class="status-description">ระบบได้รับคำสั่งซื้อของคุณแล้ว</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="status-item-wrapper">
-                <div class="status-item">
-                    <img src="pics/od2.png" class="status-icon" alt="กำลังปรุงอาหาร">
-                    <div>
-                        <strong>กำลังปรุงอาหาร</strong>
-                        <p class="status-description">เชฟกำลังปรุงอาหารของคุณ</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="status-item-wrapper">
-                <div class="status-item">
-                    <img src="pics/od3.png" class="status-icon" alt="พร้อมเสิร์ฟ">
-                    <div>
-                        <strong>พร้อมเสิร์ฟ</strong>
-                        <p class="status-description">อาหารกำลังนำไปเสิร์ฟที่โต๊ะแล้ว</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button id="order-new-btn" class="add-to-cart-btn">สั่งเมนูใหม่</button>
-     </div>
-  `;
-    
-              // แทรก HTML ลงในตะกร้า
-             const statusTrackingDiv = document.createElement('div');
-             statusTrackingDiv.id = 'status-tracking-container';
-             statusTrackingDiv.innerHTML = statusHTML;
-             cartBox.appendChild(statusTrackingDiv);
-    
-               // เพิ่ม Event Listener สำหรับปุ่ม "สั่งเมนูใหม่"
-            document.getElementById('order-new-btn').addEventListener('click', function() {
-             window.location.href = 'home_customer.php';
+        // ระบบเลือกหมายเลขโต๊ะ (คงเดิม)
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('table-select')) {
+                event.preventDefault();
+                const tableNumber = event.target.textContent;
+                document.getElementById('table-status').textContent = tableNumber;
+                document.getElementById('table-btn').textContent = tableNumber;
+                event.target.closest('.dropdown-content').style.display = 'none';
+            }
         });
-    
-            // ล้างข้อมูลเมนูที่เลือก
-            selectedMenuItems = {};
-    
-         // รีเซ็ตปุ่ม "เลือก" ในเมนูทั้งหมด
-          document.querySelectorAll('.select-btn').forEach(btn => {
-               btn.textContent = 'เลือก';
-               btn.disabled = false;
-        });
-     }
 
-        // เพิ่ม event delegation สำหรับปุ่มเพิ่ม/ลดจำนวน และลบรายการ (ปรับให้คงค่าหมายเหตุ)
+        document.getElementById('table-btn').addEventListener('click', function() {
+            const dropdown = this.nextElementSibling;
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('#table-btn')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].style.display === 'block') {
+                        dropdowns[i].style.display = 'none';
+                    }
+                }
+            }
+        });
+
         document.addEventListener('click', function(event) {
             const target = event.target;
             if (target.classList.contains('increase-btn') || target.classList.contains('decrease-btn')) {
@@ -476,40 +530,29 @@
                     updateCartDisplay();
                 }
             }
-
             if (target.classList.contains('remove-btn')) {
                 const cartItem = target.closest('.cart-item');
                 const itemNameToRemove = cartItem.getAttribute('data-name');
                 delete selectedMenuItems[itemNameToRemove];
                 updateCartDisplay();
             }
-
-            // การทำงานเมื่อคลิกปุ่ม "เรียกพนักงาน"
             if (target.id === 'call-staff-btn') {
                 const tableStatusElement = document.getElementById('table-status');
                 const currentTableText = tableStatusElement.textContent;
-
                 if (currentTableText === 'ยังไม่ได้เลือกโต๊ะ') {
                     alert('กรุณาเลือกหมายเลขโต๊ะก่อนเรียกพนักงาน');
                     return;
                 }
-
-                // ดึงหมายเลขโต๊ะ (สมมติว่าข้อความคือ "โต๊ะ X")
                 const tableNumber = currentTableText.split(' ')[1];
-
-                // ส่งคำขอไปยังเซิร์ฟเวอร์เพื่ออัปเดตสถานะโต๊ะ
-                fetch('backend/call_staff.php', { // สร้างไฟล์ call_staff.php เพื่อจัดการการอัปเดต
+                fetch('backend/call_staff.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     body: `table_no=${tableNumber}`
                 })
                 .then(response => response.text())
                 .then(data => {
                     if (data === 'success') {
                         alert(`เรียกพนักงานไปยังโต๊ะ ${tableNumber} แล้ว`);
-                        // อาจจะมีการเปลี่ยนแปลง UI เพิ่มเติม เช่น เปลี่ยนสีปุ่ม หรือแสดงข้อความสถานะ
                     } else {
                         alert('เกิดข้อผิดพลาดในการเรียกพนักงาน โปรดลองอีกครั้ง');
                         console.error('Error calling staff:', data);
@@ -522,34 +565,6 @@
             }
         });
 
-        // ระบบเลือกหมายเลขโต๊ะ (คงเดิม)
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('table-select')) {
-                event.preventDefault();
-                const tableNumber = event.target.textContent;
-                document.getElementById('table-status').textContent = tableNumber;
-                document.getElementById('table-btn').textContent = tableNumber;
-                event.target.closest('.dropdown-content').style.display = 'none';
-            }
-        });
-
-        // แสดง/ซ่อนเมนูเลือกโต๊ะ (คงเดิม)
-        document.getElementById('table-btn').addEventListener('click', function() {
-            const dropdown = this.nextElementSibling;
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // ซ่อนเมนูเลือกโต๊ะเมื่อคลิกที่อื่น (คงเดิม)
-        window.addEventListener('click', function(event) {
-            if (!event.target.matches('#table-btn')) {
-                const dropdowns = document.getElementsByClassName('dropdown-content');
-                for (let i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].style.display === 'block') {
-                        dropdowns[i].style.display = 'none';
-                    }
-                }
-            }
-        });
     </script>
 </body>
 </html>
