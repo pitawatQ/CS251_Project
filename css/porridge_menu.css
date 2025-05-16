@@ -1,4 +1,4 @@
- body {
+body {
     font-family: 'Sarabun', sans-serif;
     background: url('../pics/background.png');
     background-size: cover;
@@ -109,29 +109,29 @@
 }
 
 /* CSS เพิ่มเติมสำหรับปุ่มเรียกพนักงาน */
-.nav-buttons {
-     display: flex;
-     align-items: center;
-     gap: 10px;
- }
- #call-staff-btn {
-     display: flex;
-     align-items: center;
-     background-color: white;
-     border: 3px solid #ff9800; /* สีปุ่มเรียกพนักงาน */
-     border-radius: 40px;
-     padding: 10px 18px;
-     font-size: 20px;
-     font-weight: bold;
-     gap: 5px;
-     cursor: pointer;
-     text-decoration: none;
-     color: #ff9800; /* สีข้อความปุ่มเรียกพนักงาน */
- }
-#call-staff-btn img {
-     width: 24px;
-     height: 24px;
- }
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #call-staff-btn {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 3px solid #ff9800; /* สีปุ่มเรียกพนักงาน */
+            border-radius: 40px;
+            padding: 10px 18px;
+            font-size: 20px;
+            font-weight: bold;
+            gap: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #ff9800; /* สีข้อความปุ่มเรียกพนักงาน */
+        }
+        #call-staff-btn img {
+            width: 24px;
+            height: 24px;
+        }
 
 .gradient-bar {
     height: 15px;
@@ -190,10 +190,10 @@
 
 /* สไตล์สำหรับปุ่ม active */
 .menu-category-item.active {
-    background-color: #58C993; 
-    color: #333; 
-    border: 1px; 
-    font-weight: bold;
+    background-color: #58C993; /* สีพื้นหลังที่โดดเด่น */
+    color: #333; /* สีตัวอักษรที่ตัดกัน */
+    border: 1px; /* ขอบที่เข้ากัน */
+    font-weight: bold; /* ทำให้ข้อความดูเด่นขึ้น */
     border-radius: 20px;
 }
 
@@ -248,8 +248,8 @@
 }
 
 .tag.popular {
-  background-color: green;
-  color: white;
+  background-color: white;
+  color: green;
   text-decoration: none;
   border: 3px solid #159356;
 }
@@ -507,7 +507,6 @@
 .add-more-items-btn:hover {
     background-color: #e0e0e0;
 }
-
 
 /* CSS styles for order status tracking */
 .order-status-details {
