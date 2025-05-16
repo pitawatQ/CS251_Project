@@ -10,13 +10,13 @@ CREATE TABLE TableList (
 
 -- Table: Category
 CREATE TABLE Category (
-    CategoryID INT(2) PRIMARY KEY,
+    CategoryID INT(2) AUTO_INCREMENT PRIMARY KEY,
     CName VARCHAR(50)
 );
 
 -- Table: Menu
 CREATE TABLE Menu (
-    MenuID INT(3) PRIMARY KEY,
+    MenuID INT(3) AUTO_INCREMENT PRIMARY KEY,
     CategoryID INT(2),
     Name VARCHAR(50),
     Price DECIMAL(6,2),
@@ -28,7 +28,7 @@ CREATE TABLE Menu (
 
 -- Table: Employee
 CREATE TABLE Employee (
-    EmployeeID INT(6) PRIMARY KEY,
+    EmployeeID INT(6) AUTO_INCREMENT PRIMARY KEY,
     FName VARCHAR(50),
     LName VARCHAR(50),
     Password VARCHAR(12),
@@ -40,7 +40,7 @@ CREATE TABLE Employee (
 
 -- Table: Orders
 CREATE TABLE Orders (
-    OrderID INT(6) PRIMARY KEY,
+    OrderID INT(6) AUTO_INCREMENT PRIMARY KEY,
     EmployeeID INT(6),
     TableNo INT(3),
     OrderTime TIMESTAMP,
@@ -65,7 +65,7 @@ CREATE TABLE OrderDetail (
 
 -- Table: Supplier
 CREATE TABLE Supplier (
-    SupplierID INT(6) PRIMARY KEY,
+    SupplierID INT(6) AUTO_INCREMENT PRIMARY KEY,
     Sname VARCHAR(50),
     Phone CHAR(10),
     Email VARCHAR(50)
@@ -73,7 +73,7 @@ CREATE TABLE Supplier (
 
 -- Table: Stock
 CREATE TABLE Stock (
-    IngredienID INT(6) PRIMARY KEY,
+    IngredientID INT(6) PRIMARY KEY,
     SupplierID INT(6),
     IngredientName VARCHAR(50),
     Quantity DECIMAL(6,2),
@@ -87,17 +87,17 @@ CREATE TABLE Stock (
 -- Table: IngredientUsage
 CREATE TABLE IngredientUsage (
     MenuID INT(3),
-    IngredienID INT(6),
+    IngredientID INT(6),
     QuantityUsed DECIMAL(6,2),
     ErrorRateUsed DECIMAL(3,2),
-    PRIMARY KEY (MenuID, IngredienID),
+    PRIMARY KEY (MenuID, IngredientID),
     FOREIGN KEY (MenuID) REFERENCES Menu(MenuID),
-    FOREIGN KEY (IngredienID) REFERENCES Stock(IngredienID)
+    FOREIGN KEY (IngredientID) REFERENCES Stock(IngredientID)
 );
 
 -- Table: Payment
 CREATE TABLE Payment (
-    PaymentID INT(6) PRIMARY KEY,
+    PaymentID INT(6) AUTO_INCREMENT PRIMARY KEY,
     OrderID INT(6),
     PaymentMethod VARCHAR(50),
     TotalPaid DECIMAL(6,2),

@@ -54,7 +54,7 @@ INSERT INTO Supplier (SupplierID, Sname, Phone, Email) VALUES
 (400005, 'โกลบอลฟู้ด', '0955555555', 'globalfood@example.com');
 
 -- Stock
-INSERT INTO Stock (IngredienID, SupplierID, IngredientName, Quantity, Unit, ImportDate, Expirationdate, LastUpdate) VALUES
+INSERT INTO Stock (IngredientID, SupplierID, IngredientName, Quantity, Unit, ImportDate, Expirationdate, LastUpdate) VALUES
 (300001, 400001, 'หมูเนื้อแดง', 150.00, 'กรัม', '2024-04-20', '2024-05-01', '2024-04-20'),
 (300002, 400002, 'กุ้งสด', 100.00, 'กรัม', '2024-04-21', '2024-04-28', '2024-04-21'),
 (300003, 400003, 'ปูม้า', 80.00, 'กรัม', '2024-04-19', '2024-04-29', '2024-04-19'),
@@ -62,7 +62,7 @@ INSERT INTO Stock (IngredienID, SupplierID, IngredientName, Quantity, Unit, Impo
 (300005, 400005, 'ชาไทย', 50.00, 'กรัม', '2024-04-17', '2025-04-17', '2024-04-17');
 
 -- IngredientUsage
-INSERT INTO IngredientUsage (MenuID, IngredienID, QuantityUsed, ErrorRateUsed) VALUES
+INSERT INTO IngredientUsage (MenuID, IngredientID, QuantityUsed, ErrorRateUsed) VALUES
 (101, 300003, 50.00, 0.05),
 (102, 300002, 60.00, 0.04),
 (103, 300004, 70.00, 0.03),

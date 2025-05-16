@@ -1,0 +1,396 @@
+body {
+    font-family: sans-serif;
+    background: url('../img/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
+.profile-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-id {
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  justify-content: center;
+}
+
+.container {
+    background-color: white;
+    width: 70%;
+    height: 600px;
+    margin: 120px auto;
+    padding: 40px;
+    border-radius: 40px;
+    border: 8px solid #969696;
+
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add spacing between the header-bar and minicontainer */
+}
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  
+  th {
+    background-color: #DCDED7;        
+    font-weight: bold;
+    text-align: left;      
+    padding: 10px;
+    width: 200px;
+  }
+  
+  
+  td {      
+    padding: 10px;
+    text-align: left;
+    min-height: 75px;
+  }
+  
+
+h1 {
+    color: #333;
+}
+  .toolbar {
+    
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .toolbar input[type="text"] {
+    flex: 6; /* 70% */
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .toolbar select {
+    flex: 4; /* 30% */
+    height: 50px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+  }
+  .header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.toolbar-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+.header-bar {
+    width: 100%; /* Ensure it spans the full width of the container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px; /* Optional spacing */
+}
+
+.toolbar-left {
+  display: flex;
+  gap: 12px;
+}
+
+
+.search-input {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  width: 220px;
+}
+
+.status-filter {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+
+.btn-green {
+  background-color: #28c95b;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn-green:hover {
+  background-color: #22b04d;
+}
+
+.btn-gray {
+  background-color: #d0d0d0;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn-green, .btn-gray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1;
+  height: 44px; /* เพิ่มความสูงให้คงที่ */
+}
+
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table tr:hover {
+    background-color: #f1f1f1;
+}
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+.btn-delete {
+    background-color: #f44336;
+}
+.btn-delete:hover {
+    background-color: #da190b;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group textarea, .form-group select {
+    width: 300px;
+    padding: 6px;
+    font-size: 14px;
+}
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.status.normal {
+  background-color: #28c95b;
+}
+
+.status.low {
+  background-color: #f0ad4e;
+}
+
+.status.out {
+  background-color: #e74c3c;
+}
+
+.action-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 2px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.action-btn.view {
+  background-color: #ffffff;
+  border: 2px solid #28c95b;
+  color: #28c95b;
+}
+
+.action-btn.view:hover {
+  background-color: #28c95b;
+  color: white;
+}
+
+.action-btn.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.action-btn.delete:hover {
+  background-color: #d32f2f;
+}
+
+
+.import-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.import-form {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.minicontainer {
+    border-radius: 8px;
+    border: 5px solid #ddd;
+    width: 75%; /* Optional: Set a width for the minicontainer */
+    padding: 20px; /* Optional: Add padding for better spacing */
+}
+.form-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-confirm {
+  background-color: #28c95b;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-confirm:hover {
+  background-color: #22b04d;
+}
+

@@ -5,49 +5,66 @@ body {
     background-size: cover;
   }
   
-  .top-bar {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .home-button, .profile-box {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3.5px solid #28c95b;
-    border-radius: 40px;
-    padding: 5px 12px;
-  }
-  
-  .home-button img,
-  .profile-box img {
-    width: 32px;
-    height: 32px;
-    margin-right: 8px;
-  }
-  
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .profile-name {
-    font-weight: bold;
-    font-size: 17px;
-  }
-  
-  .profile-id {
-    font-size: 11px;
-    background-color: #28c95b;
-    color: white;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-  
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
+.profile-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-id {
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
+}
+
   .main-container {
     margin: 140px auto 60px;
     padding: 40px;
@@ -67,11 +84,15 @@ body {
     margin-bottom: 20px;
   }
   
-  .table-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-  }
+.table-grid {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
   
   .table-box {
     padding: 20px;
@@ -119,24 +140,66 @@ body {
   .red { background-color: #e64343; }
   .blue { background-color: #1e88e5; }
   
-  .exit-button {
-    position: fixed;
-    bottom: 3%;
-    right: 3%;
-    width: 65px;
-    height: 65px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-  }
-  
-  .exit-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
+
+  .button-group {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.btn.check {
+  background-color: #f39c12; /* สีส้ม */
+}
+
+.btn.delete {
+  background-color: #e74c3c; /* สีแดง */
+}
+
+.btn.add {
+  background-color: #28c95b; /* สีเขียว */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.table-box.yellow {
+    background-color: #fff8c4;
+    border: 3px solid #ffc107;
+    color: #333;
+}
+.ack-form {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.ack-btn {
+  background-color: #ffcc00;
+  color: black;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

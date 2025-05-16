@@ -6,80 +6,66 @@ body {
     padding: 0;
     text-align: center;
 }
-.home-button {
-    position: absolute;
-    top: 5%;
-    right: 25%; /* Adjust to position it left of the profile box */
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3.5px solid #28c95b;
-    border-radius: 40px;
-    padding: 5px 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
 }
 
-.home-button img {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    object-fit: cover;
-}
-
-.home-button p {
-    font-size: 17px;
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-}
-
+.home-button,
 .profile-box {
-    position: absolute;
-    top: 5%;
-    right: 14%;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 3.5px solid #28c95b;
-    border-radius: 40px;
-    padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+.home-button img,
 .profile-box img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 5px;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.profile-info {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
 
 .profile-name {
-    font-size: 17px;
-    font-weight: bold;
-    color: #333;
-    margin: -2px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 .profile-id {
-    font-size: 11px;
-    background-color: #28c95b;
-    border-radius: 20px;
-    padding: 3.5px 10px;
-    color: white;
-    font-weight: bold;
-    display: inline-block;
-    margin: 0;
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
 }
+
 
 .container{
     background: url('../img/picture/SubBackground3.png');
