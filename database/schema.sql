@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS restaurant_db;
 USE restaurant_db;
 
--- Table: TableList (โต๊ะ)
+-- Table: TableList
 CREATE TABLE TableList (
     TableNo INT(3) PRIMARY KEY,
     Status INT(1) NOT NULL COMMENT '0=ว่าง, 1=ไม่ว่าง, 2=เรียกพนักงาน'
