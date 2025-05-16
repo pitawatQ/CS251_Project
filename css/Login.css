@@ -1,0 +1,120 @@
+body {
+    font-family: sans-serif;
+    background: url('../img/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background: url('../img/secoundbg.png');
+    background-size: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+    height: 80%;
+    border-radius: 40px;
+    border: 6px solid #969696;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden; /* Prevent content from overflowing the container */
+}
+
+.box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+    width: 350px;
+    height: 450px;
+    margin: auto;
+    border: 5px solid rgb(88, 88, 88);
+}
+
+.logo {
+    display: block; /* Make the logo a block element */
+    margin: 0 auto; /* Center horizontally */
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    text-align: center; /* Center-align the text */
+}
+
+.tagline {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 20px;
+    text-align: center; /* Center-align the text */
+}
+
+
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    pointer-events: none; /* ป้องกัน icon บังการคลิก */
+}
+
+.input-group input {
+    padding: 10px 10px 10px 40px; /* เผื่อที่ให้ไอคอน */
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.error-msg {
+    height: 16px; /* จองพื้นที่ไว้ตลอด */
+    margin-top: 5px;
+}
+
+.error {
+    color: red;
+    font-size: 0.85em;
+    margin: 0;
+    text-align: center; /* แนะนำเพิ่มถ้าอยากให้ข้อความอยู่กลาง */
+}
+
+.login-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 13px 33px; /* Make the button shorter */
+    font-size: 14px; /* Adjust font size */
+    cursor: pointer;
+    width: auto; /* Adjust width to fit content */
+    position: relative;
+    top: 0px; /* Move the button 15px above the box */
+    margin: 0 auto; /* Center the button horizontally */
+    display: block; /* Ensure the button is centered */
+    border-radius: 20px; /* Add rounded corners */
+}
+
+.login-button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+h1 {
+    color: #333;
+}
+.toolbar {
+    margin-bottom: 15px;
+}
+.toolbar input[type="text"], .toolbar select {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table tr:hover {
+    background-color: #f1f1f1;
+}
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+.btn-delete {
+    background-color: #f44336;
+}
+.btn-delete:hover {
+    background-color: #da190b;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group textarea, .form-group select {
+    width: 300px;
+    padding: 6px;
+    font-size: 14px;
+}

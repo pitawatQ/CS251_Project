@@ -1,20 +1,20 @@
 body {
     font-family: sans-serif;
     background: url('../img/background.png');
-    background-size: 55%;
+    background-size: cover;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 .container {
-    background: url('../img/secoundbg.png');
+    background: url('../img/picture/SubBackground2.png');
     background-size: 80%;
     margin: 0 auto;
     padding: 20px;
     width: 70%;
     height: 70%;
     border-radius: 40px;
-    border: 10px solid #969696;
+    border: 8px solid #969696;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,7 +31,7 @@ body {
     margin: 0;
 }
 .menu-item {
-    border: 15px solid orange;
+    border: 10px solid orange;
     background-color: white;
     border-radius: 40px;
     width: 300px;

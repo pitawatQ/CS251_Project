@@ -1,0 +1,200 @@
+/* recommended.css */
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: url('../pics/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border: 7px solid #28c95b;
+    background-color: white;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .logo-box img {
+    width: 250px;
+    height: 100px;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .nav-btn {
+    background-color: white;
+    border: 3px solid #28c95b;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .nav-btn.active {
+    background-color: #28c95b;
+    color: white;
+  }
+  
+  .lang-dropdown {
+    position: relative;
+  }
+  
+  .lang-dropdown button {
+    background-color: #28c95b;
+    color: white;
+    border-radius: 25px;
+    padding: 8px 18px;
+    border: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .lang-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 8px 16px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .gradient-bar {
+    height: 10px;
+    background: linear-gradient(to right, #01c18b, #6ad569);
+    margin: 20px 0;
+  }
+  
+  .recommend-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .recommend-header h1 {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+  
+  .recommend-header .subtext {
+    font-size: 20px;
+    color: #083ec3;
+    font-weight: bold;
+  }
+  
+  .menu-dropdown button {
+    border: 2px solid #555;
+    border-radius: 25px;
+    padding: 10px 20px;
+    background-color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .recommend-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: center;
+  }
+  
+  .arrow-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 50px;
+  }
+  
+  .arrow-btn img {
+    width: 100%;
+  }
+  
+  .rec-card {
+    background-color: white;
+    border-radius: 25px;
+    width: 280px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e0e0;
+  }
+  
+  .rec-card img {
+    width: 100%;
+    display: block;
+  }
+  
+  .rec-detail {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .rec-detail h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .rec-detail p {
+    font-size: 16px;
+    margin: 0;
+    color: #555;
+  }
+  
+  .start-btn {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .start-btn button {
+    background-color: #ffb300;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  

@@ -1,0 +1,343 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: url('../img/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ===== Container ===== */
+  .container {
+    background-color: white;
+    background-size: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+    height: 70%;
+    border-radius: 40px;
+    border: 8px solid #969696;
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+}
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
+.profile-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-id {
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
+}
+
+  /* ===== Header Bar (Title & Add Button) ===== */
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header-bar h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .btn-add {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* ===== Toolbar (Search & Filter) ===== */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .toolbar input[type="text"] {
+    flex: 7; /* 70% */
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .toolbar select {
+    flex: 3; /* 30% */
+    height: 50px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  /* ===== Table Styling ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* ===== Buttons ===== */
+  .btn, .btn-small {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    border: 1px solid #d3d3d3;
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-align: center;
+  }
+  
+  .btn:hover, .btn-small:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* ขนาดเล็กจริง ๆ */
+.btn-small {
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 10px;
+}
+
+  
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+  
+.btn-delete:hover {
+  background-color: #c62828;
+}
+  
+
+  
+  /* ===== Status Badges ===== */
+  .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+  
+  .status-working {
+    background-color: #e9f7ef;
+    color: #28a745;
+    border-color: #c3e6cb;
+  }
+  
+  .status-inactive {
+    background-color: #fff3cd;
+    color: #ff6f00;
+    border-color: #ffeeba;
+  }
+  
+  /* ===== Misc. Tables & Forms ===== */
+  .employee-list {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #ddd;
+    border-radius: 12px;
+    min-height: 500px;
+    overflow-y: auto;
+    max-height: 500px; /* เพิ่มความสูงสูงสุด */
+  }
+  
+  .employee-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 16px 24px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    gap: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-info {
+    flex: 0 0 50%;
+    width: 40%; /* เพิ่มตรงนี้ */
+    min-width: 0; 
+  }
+  
+.employee-meta {
+  display: grid;
+  grid-template-columns: 150px 160px 130px 80px; /* กำหนดความกว้างที่ชัดเจน */
+  gap: 20px;
+  align-items: center;
+  justify-content: end;
+  padding-left: 20px;;
+}
+
+  
+  .employee-name {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  
+  .employee-details {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  
+  /* ป้ายตำแหน่ง */
+  .badge.role {
+    background-color: #e6f0ff;
+    color: #007bff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  /* สถานะ */
+.status {
+  display: flex;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+  
+  .status-working {
+    background-color: #e9f7ef;
+    color: #28a745;
+    border-color: #c3e6cb;
+  }
+  
+  .status-inactive {
+    background-color: #fff3cd;
+    color: #ff6f00;
+    border-color: #ffeeba;
+  }
+.badge {
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3f2fd;
+  color: #03a9f4;
+  border: 1px solid #03a9f4;
+}
+
+.badge-default {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+/* สถานะ */
+.status-working {
+  background-color: #e6ffe6;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+.status-inactive {
+  background-color: #fabdb8;
+  color: #ff1100;
+  border: 1px solid #ff1100;
+}

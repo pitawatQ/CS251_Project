@@ -1,0 +1,24 @@
+Table: 2, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":2,"note":"ขอเผ็ดๆ"}]}
+Table: 1, Order: {"orderDetails":[{"name":"ชาเย็น","quantity":1,"note":"ขอหวานพอดี"}]}
+Table: 1, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":"ขอพิเศษ"}]}
+Table: 3, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":1,"note":"ขอแบบเผ็ดๆ และ พิเศษ"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":1,"note":"ขอเข้มข้น"}]}
+Table: 5, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":2,"note":"ขอเผ็ดๆ เพิ่มกุ้ง"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":2,"note":"เพิ่มกุ้งด้วย"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":2,"note":"เพิ่มกุ้งด้วย"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":2,"note":"เพิ่มกุ้งด้วย"}]}
+Table: 1, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":1,"note":"พั่ีัาาาาส"}]}
+Table: 1, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":1,"note":"พั่ีัาาาาส"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":"เพิ่มกุ้ง 2 ตัว"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ข้าวผัดปู","quantity":2,"note":"ขอกลมกล่อมๆ"}]}
+Table: 5, Order: {"orderDetails":[{"name":"ข้าวผัดปู","quantity":1,"note":"เพิ่มข้าว"}]}
+Table: 4, Order: {"orderDetails":[{"name":"ชาเย็น","quantity":1,"note":"ขอหวานพอดี"}]}
+Table: 2, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":3,"note":"พิเศษกุ้ง"}]}
+Table: 3, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":4,"note":"ขอแบบเผ็ดมากๆๆ"}]}
+Table: 1, Order: {"orderDetails":[{"name":"ไก่ทอด","quantity":2,"note":"ขอทอดกรอบๆ"}]}
+Table: 3, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":""}]}
+Table: 3, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":""}]}
+Table: 3, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":""}]}
+Table: 3, Order: {"orderDetails":[{"name":"ข้าวต้มหมู","quantity":1,"note":""}]}
+Table: 3, Order: {"orderDetails":[{"name":"ข้าวผัดปู","quantity":1,"note":""}]}
+Table: 3, Order: {"orderDetails":[{"name":"ต้มยำกุ้ง","quantity":1,"note":""}]}

@@ -1,0 +1,245 @@
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: url('../pics/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
+.profile-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-id {
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
+}
+
+.container {
+    background-color: white;
+    width: 70%;
+    height: 600px;
+    margin: 120px auto;
+    padding: 40px;
+    border-radius: 40px;
+    border: 8px solid #969696;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  
+  th {
+    background-color: #DCDED7;        
+    font-weight: bold;
+    text-align: left;
+    border: 2px solid #999;           
+    padding: 10px;
+    width: 200px;
+  }
+  
+  
+  td {
+    border: 2px solid #999;           
+    padding: 10px;
+    text-align: left;
+    min-height: 75px;
+  }
+  
+
+
+/* ปรับ dropdown ให้ใหญ่ขึ้น */
+.info select {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+    background-color: white;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+
+.sub-item {
+  font-size: 14px;
+  color: #666;
+}
+
+.status {
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+}
+
+.status.waiting {
+  background-color: #f39c12; /* ส้ม */
+}
+
+.status.cooking {
+  background-color: #e67e22; /* ส้มเข้ม */
+}
+
+.status.serving {
+  background-color: #3498db; /* ฟ้า */
+}
+
+.status.done {
+  background-color: #28c95b; /* เขียว */
+}
+
+.status.canceled {
+  background-color: #929292; /* แดง */
+}
+.status.paid {
+  background-color: #c5b30b; /* เขียว */
+}
+
+
+td select {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.status-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+
+.status-btn.cancel {
+  background-color: #e74c3c; /* แดง */
+}
+
+.table-wrapper {
+  max-height: 500px; /* ปรับตามที่คุณต้องการ */
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+/* ถ้าอยากให้ scroll bar ดูเนียน */
+.table-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+.alert-box {
+  background-color: #FFE39F;
+  border: 1px solid #ffce66;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 10px 50px 20px 50px;
+}
+
+.info select {
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 15px;
+  border: 2px solid #ccc;
+  background-color: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sub-item {
+  font-size: 14px;
+  color: #666;
+}
+
+
+
+.action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 10px;
+  margin-right: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+}
+
+.action.served {
+  background-color: #2a91e8;
+}
+
+.action.cancel {
+  background-color: #e74c3c;
+}
+.status-btn.canceled {
+  background-color: #999;
+  cursor: not-allowed;
+}

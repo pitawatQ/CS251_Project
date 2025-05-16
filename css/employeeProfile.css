@@ -1,0 +1,291 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: url('../img/background.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ===== Container ===== */
+  .container {
+    background-color: white;
+    background-size: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+    height: 70%;
+    border-radius: 40px;
+    border: 8px solid #969696;
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+}
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-button,
+.profile-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #28c95b;
+  border-radius: 40px;
+  padding: 6px 16px;
+  height: 50px;
+  min-width: 160px;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.home-button img,
+.profile-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-id {
+  font-size: 11px;
+  background-color: #20d058;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 3px; /* ให้เว้นบรรทัดนิดเดียว */
+  display: inline-block;
+  width: fit-content;
+}
+.section-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.toolbar {
+    margin-bottom: 15px;
+}
+.toolbar input[type="text"], .toolbar select {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+table tr:hover {
+    background-color: #f1f1f1;
+}
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 20px;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+.btn-delete {
+    background-color: #f44336;
+}
+.btn-delete:hover {
+    background-color: #da190b;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.profile-header {
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-bottom: 20px;
+}
+
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* จาก flex-start → center */
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border: 2px solid #ccc;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 450px;
+}
+
+
+
+.profile-left {
+  justify-content: center; /* เพิ่มบรรทัดนี้ */
+  flex-shrink: 0;
+}
+
+.profile-right {
+  justify-content: center; /* เพิ่มบรรทัดนี้ */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* จัดให้อยู่กลาง */
+}
+
+.actions-inline {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+
+.profile-info {
+  width: 100%;
+  max-width: 500px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+
+.profile-img img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid #28c95b;
+  object-fit: cover;
+  margin: 0; /* แก้จาก margin-left:100% */
+}
+
+
+.profile-info {
+  flex: 1;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+.info-row strong {
+  min-width: 120px;
+  text-align: right;
+  display: inline-block;
+}
+
+.badge {
+  background-color: #e3f2fd;
+  color: #007bff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.status-working {
+  background-color: #e6ffe6;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status-inactive {
+  background-color: #fabdb8;
+  color: #ff1100;
+  border: 1px solid #ff1100;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.actions-inline {
+  display: flex;
+  justify-content: center; /* เปลี่ยนจาก flex-end เป็น center */
+  margin-top: 20px;
+  gap: 0px;
+}
+
+
+.actions .btn-small {
+  font-size: 20px;
+  padding: 8px 20px;
+  margin: 0 5px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.actions .btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.actions .btn-small:not(.btn-delete) {
+  background-color: #fff;
+  border: 2px solid #666;
+  color: #333;
+}
